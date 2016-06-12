@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/photo.png</file>
+        <file>icons/quit.png</file>
+        <file>icons/logo.ico</file>
+        <file>images/config.png</file>
+        <file>images/female-test.bmp</file>
+        <file>images/loading.png</file>
+        <file>images/male-test.png</file>
+        <file>images/query.png</file>
+        <file>images/update.png</file>
+        <file>libs/Both_Detect_DefectOrlight.dll</file>
+        <file>configs/gpldata01.txt</file>
+        <file>configs/gpldata02.txt</file>
+    </qresource>
+    <qresource prefix="/lang">
+        <file>fiber2.qm</file>
+    </qresource>
+</RCC>
