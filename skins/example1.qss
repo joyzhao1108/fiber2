@@ -1,0 +1,835 @@
+/*************************************************************************************************************
+Title:             PlatForm Qss File
+Create Date:       2013/5/18
+Creator:           Trump
+**************************************************************************************************************/
+QLabel {color:white; font-family: 宋体;font-size:12px;border:none;text-align:center;}
+QLabel:disabled {color:gray;}
+QLineEdit {color:black; font-family: 宋体;font-size:12px;text-align:center;}
+QPushButton {font-family: 宋体;font-size:12px;text-align:center;}
+QComboBox {font-family: 宋体;font-size:12px;}
+
+QToolTip {
+     border-radius: 3px;
+}
+ 
+QMessageBox {   border-color:#32435E; border-width:1px; border-radius: 3px;
+  min-width:30px; min-height:23px;
+  /*font-family:"宋体";font-size:36px;*/
+  border-image:url(./config/qss/style_1/images/messageBox_background.png);
+  height: 300px;
+  width: 200px;
+  border: none;}
+
+QListWidget{border: 1px solid #32435E;border-image:url(./config/qss/style_1/images/desktop-bg.png);color: white;}
+QListWidget::item{   
+     /*border: 0px solid #33CCFF;*/  
+     color:black;
+     padding:0px;   
+     margin:0px;   
+} 
+QListWidget::item:hover {   
+     /*border: 0px solid #33CCFF;*/  
+     border:none;   
+     background: white;  
+     padding:0px;   
+     margin:0px;   
+}  
+QListWidget::item:selected {   
+     /*border: 0px solid #33CCFF;*/  
+     border:none;   
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,   
+                                 stop: 0 #6A848C,  stop: 1.0 #0F9EAF);   
+     padding:0px;   
+     margin:0px;   
+}  
+
+QClouldSeeRegisterWnd QLabel {color:black;}
+QClouldSeeRegisterWnd QLineEdit {color:black;}
+QClouldSeeUserEdit QLabel {color:black;}
+QClouldSeeUserWnd QLabel {color:black;}
+QRequestAddPeerWnd QLabel {color:black;}
+QRequestJoinGroupWnd QLabel {color:black;}
+LockDialog QLabel {color:black;}
+LanDeviceSearch QLabel {color:black;}
+
+/* the platform frame backgroud image*/
+QFrame#frame {border-image:url(./config/qss/style_1/images/mainframe-bg.png);}
+
+/*the top funcButtons style*/
+/*QPushButton {outline:none;}*/
+
+QPushButton#_MinButton{background-image:url(./config/qss/style_1/images/min-normal.png);border:none;outline:none;}
+QPushButton#_MinButton:hover:!pressed{background-image:url(./config/qss/style_1/images/min-hover.png);}
+QPushButton#_MinButton:pressed{background-image:url(./config/qss/style_1/images/min-pressed.png);}
+
+QPushButton#_MaxButton{background-image:url(./config/qss/style_1/images/max-normal.png);border:none;outline:none;}
+QPushButton#_MaxButton:hover:!pressed{background-image:url(./config/qss/style_1/images/max-hover.png);}
+QPushButton#_MaxButton:pressed{background-image:url(./config/qss/style_1/images/max-pressed.png);}
+
+QPushButton#_CloseButton{background-image:url(./config/qss/style_1/images/close-normal.png);border:none;outline:none;}
+QPushButton#_CloseButton:hover:!pressed{background-image:url(./config/qss/style_1/images/close-hover.png);}
+QPushButton#_CloseButton:pressed{background-image:url(./config/qss/style_1/images/close-pressed.png);}
+
+QPushButton#_LockButton{background-image:url(./config/qss/style_1/images/lock-open-normal.png);border:none;outline:none;}
+QPushButton#_LockButton:pressed{background-image:url(./config/qss/style_1/images/lock-open-pressed.png);}
+QPushButton#_LockButton:hover:!pressed{background-image:url(./config/qss/style_1/images/lock-open-hover.png);}
+
+QPushButton#_unlockButton{border-image:url(./config/qss/style_1/images/common_but_normal.png);border:none;outline:none;}
+QPushButton#_unlockButton:hover:!pressed {border-image:url(./config/qss/style_1/images/common_but_hover.png);}
+QPushButton#_unlockButton:pressed {border-image:url(./config/qss/style_1/images/common_but_pressed.png);}
+QPushButton#_unlockButton:!enabled {border-image: url();}
+
+/* the user's infowidget background color*/
+QClouldSeeUserInfo QLineEdit {color:white;}
+QWidget#userInfoWidget {background-color:rgba(0,0,0,0);border-image:url(./config/qss/style_1/images/userInfo_bg.png);}
+QWidget#Titlewidget {border-image:url(./config/qss/style_1/images/titlewnd.png);}
+QLineEdit#_signIn:hover{border-image:url(./config/qss/style_1/images/signature_bg.png);}
+
+/* usrinfownd's msgbox style*/
+QPushButton#_msgButton {border-image:url(./config/qss/style_1/images/msgBoxIcon.png);max-height:20px;max-width:36px;outline:none;border:none}
+QToolButton {background-color:rgba(0,0,0,0);}
+QLabel#_DateLabel {color:white}
+
+/* process title label*/
+QLabel#_TitleLabel {border-image:url(./config/qss/style_1/images/logo.png)}
+
+/* the left tree tabwidget stye*/
+QTabWidget::pane {
+border: none;
+position: absolute;
+left: 0px;
+}
+
+QTabWidget#treeWg {background-color:white;border:none;outline:none}
+QTabWidget#treeWg QTabBar::tab:first:top {border-image:url(./config/qss/style_1/images/contact-tab-normal.png);}
+QTabWidget#treeWg QTabBar::tab:first:top:hover:!selected {border-image:url(./config/qss/style_1/images/contact-tab-hover.png);}
+QTabWidget#treeWg QTabBar::tab:first:top:selected {border-image:url(./config/qss/style_1/images/contact-tab-pressed.png);}
+
+QTabWidget#treeWg QTabBar::tab {border-image:url(./config/qss/style_1/images/device-tab-normal.png);height:34px;width:101px;border:none;outline:none;text-align:center;}
+QTabWidget#treeWg QTabBar::tab:hover:!selected {border-image:url(./config/qss/style_1/images/device-tab-hover.png);}
+QTabWidget#treeWg QTabBar::tab:selected {border-image:url(./config/qss/style_1/images/device-tab-pressed.png);}
+
+QTabWidget#treeWg QTabBar::tab:last:top {border-image:url(./config/qss/style_1/images/group-tab-normal.png);}
+QTabWidget#treeWg QTabBar::tab:last:top:hover:!selected {border-image:url(./config/qss/style_1/images/group-tab-hover.png);}
+QTabWidget#treeWg QTabBar::tab:last:top:selected {border-image:url(./config/qss/style_1/images/group-tab-pressed.png);}
+
+/* the treeview backgroud image */
+QTreeView {background-color: #ecf0f3;border:none;outline:none;}
+
+/*the im bottom toolbar style*/
+QGroupBox#toolgroupBox {border-image:url(./config/qss/style_1/images/toolbar.png);border:none}
+
+/*the LineEdit style*/
+QLineEdit#_accountLineEdit {border:1px solid rgb(79, 170,
+227);border-radius:2px;margin:0;background-image:url(./config/qss/style_1/images/lineEditbg.png); color:black;}
+QLineEdit#_accountLineEdit:focus {border:1px solid rgb(255, 170, 0);border-radius: 2px;}
+QLineEdit#_PasswdLineEdit {border:1px solid rgb(79, 170,227);border-radius:2px;margin:0;background-image:url(./config/qss/style_1/images/lineEditbg.png);color:black;}
+QLineEdit#_PasswdLineEdit:focus {border:1px solid rgb(255, 170, 0);border-radius: 2px;}
+
+QLineEdit#_ReAccountLineEdit {border:1px solid rgb(79,170,227);border-radius:3px;margin:0;background-color:rgb(250,250,250);color: rgb(106,106,106);}
+QLineEdit#_ReAccountLineEdit:focus {border:1px solid rgb(255, 170, 0);border-radius: 3px;}
+QLineEdit#_RePasswdLineEdit {border:1px solid rgb(79, 170,227);border-radius:3px;margin:0;background-color:rgb(250,250,250);
+color:rgb(106,106,106);}
+QLineEdit#_RePasswdLineEdit:focus {border:1px solid rgb(255, 170, 0);border-radius: 3px;}
+QLineEdit#_PasswdSureLineEdit {border:1px solid rgb(79, 170, 227);border-radius:3px;margin:0;background-color:rgb(250,250,250);
+color:rgb(106,106,106);}
+QLineEdit#_PasswdSureLineEdit:focus {border:1px solid rgb(255, 170, 0);border-radius: 3px;}
+QLineEdit#_yanzhengLineEdit {border:1px solid rgb(79, 170, 227);border-radius:3px;margin:0;background-color:rgb(250,250,250);
+color:rgb(106,106,106);}
+QLineEdit#_yanzhengLineEdit:focus {border:1px solid rgb(255, 170, 0);border-radius: 3px;color:rgb(106,106,106);}
+QPushButton#_yanzhengButton{background-image:url(./config/qss/style_1/images/yanzheng.png);border:none;outline:none;}
+
+QLineEdit#_SearchLineEdit {background-image:url();border-image:url(./config/qss/style_1/images/treeSearch_bg.png);max-height:30px;border:none;}
+QPushButton#_searchButton
+{border-image:url(./config/qss/style_1/images/findicon.png);max-height:30px;max-width:27px}
+
+QLineEdit#_qianlineEdit::read-only {background-color:rgba(0,0,0,0)}
+
+/* TreeView's scrollbar style*/
+/* QTreeView::branch {image:none;}*/
+
+QTreeView QScrollBar:vertical {margin: 13px 0px 13px 0px;background-color:#f2f2f2;width: 15px;}
+
+QTreeView QScrollBar::handle:vertical {background-color: rgba(80,160,200,100) ; border: 1px solid #a0a0a0;width: 11px;}
+QTreeView QScrollBar::handle:vertical:hover {background-color: #599fdb;}
+QTreeView QScrollBar::handle:vertical:pressed {background-color: #2378c0;}
+
+QTreeView QScrollBar::add-page:vertical {background-color: #f2f2f2;border: 1px solid #a0a0a0;width:15px;}
+QTreeView QScrollBar::add-line:vertical {subcontrol-origin: margin; border:1px solid #a0a0a0;height: 13px;}
+QTreeView QScrollBar::sub-page:vertical {background-color: #f2f2f2;border: 1px solid #a0a0a0;width:15px;}
+QTreeView QScrollBar::sub-line:vertical {subcontrol-origin: margin; border:1px solid #a0a0a0;height: 13px;}
+QTreeView QScrollBar::up-arrow:vertical { 
+subcontrol-origin: margin;
+image:url(./config/qss/style_1/images/ScrollBar-bottom-normal.png);
+width:15px;
+height:13px
+}
+QTreeView QScrollBar::up-arrow:vertical:hover { 
+image:url(./config/qss/style_1/images/ScrollBar-bottom-hover.png); 
+}
+QTreeView QScrollBar::down-arrow:vertical { 
+subcontrol-origin: margin;
+image:url(./config/qss/style_1/images/ScrollBar-top-normal.png); 
+width:15px;
+height:13px
+}
+QTreeView QScrollBar::down-arrow:vertical:hover { 
+image:url(./config/qss/style_1/images/ScrollBar-top-hover.png); 
+}
+
+ 
+
+QTableWidget#tableCalendar {border-image:url(./config/qss/style_1/images/calendar-table.png);
+            color: rgb(80,80,80);
+            gridline-color: white;
+            selection-color: red;
+            selection-background-color: rgb(230,180,100);
+            border:none
+            }
+
+QMenu {border-image:url(./config/qss/style_1/images/treeMenu_bg.png);border:1px solid gray;border-radius:3px;min-width:60px;}
+QMenu::item {    
+     min-width:60px;
+     height:25px;
+     padding: 2px 25px 2px 30px;
+     margin-left: 5px; 
+     /* color:#858E94; */
+     color:black
+ }
+
+QMenu::item:selected {   
+     border-width:1px;
+     border-color: #516589;
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, 
+                                 stop: 0 
+                                 rgb(45,133,207),
+                                 stop: 1.0 rgb(125,195,250));
+     color:#E6FFFF;
+ }
+ QMenu::item:disabled {    
+     color:gray;
+ }
+
+QToolButton#_mainmenuButton {border-image:url(./config/qss/style_1/images/mainmenu.png)}
+QToolButton#_mainmenuButton:hover {border-image:url(./config/qss/style_1/images/mainmenu-hover.png)}
+QToolButton#_FindButton {border-image:url(./config/qss/style_1/images/platsearch.png)}
+QToolButton#_FindButton:hover {border-image:url(./config/qss/style_1/images/platsearch-hover.png)}
+QToolButton#_msgtoolButton {border-image:url(./config/qss/style_1/images/msgbox.png)}
+QToolButton#_msgtoolButton:hover {border-image:url(./config/qss/style_1/images/msgbox-hover.png)}
+
+ 
+
+/*************************************************************************************************************
+Title:            PlatForm  Login Qss File
+Create Date:      2012/5/18
+Creator:          Trump
+**************************************************************************************************************/
+
+QClouldSeeLoginWnd QLabel {color:black;}
+QClouldSeeLoginWnd QLabel#lb_prompt{color:red;}
+DbItem QLabel {color: rgb(0, 142, 213);}
+DeskTopNode QLabel {color:black;}
+
+QLabel#_logoLabel{border-image: url(./config/qss/style_1/images/logo.png);}
+/*the ui button style*/
+
+QPushButton#_LoginButton{border-image:url(./config/qss/style_1/images/Login_normal.png);}
+QPushButton#_LoginButton:hover:!pressed{border-image: url(./config/qss/style_1/images/Login_hover.png);}
+QPushButton#_LoginButton:pressed{border-image: url(./config/qss/style_1/images/Login_pressed.png);}
+
+QPushButton#_RegisterButton{color:rgb(54,129,222);border:none;}
+QPushButton#_RegisterButton:hover:!pressed{color:rgb(0,113,255);}
+
+QPushButton#_RegButton{background-image:url(./config/qss/style_1/images/register_normal.png);border:none;outline:none}
+QPushButton#_RegButton:hover:!pressed{background-image: url(./config/qss/style_1/images/register_hover.png);}
+QPushButton#_RegButton:pressed{background-image: url(./config/qss/style_1/images/register_press.png);}
+QPushButton#_RegButton:!enabled{background-image: url(./config/qss/style_1/images/register_nable.png);}
+
+QPushButton#_LoginCloseButton {background-image:url(./config/qss/style_1/images/close-normal.png);border:none;outline:none}
+QPushButton#_LoginCloseButton:hover:!pressed{background-image:url(./config/qss/style_1/images/close-hover.png);}
+QPushButton#_LoginCloseButton:pressed{background-image:url(./config/qss/style_1/images/close-pressed.png);}
+
+QPushButton#_LoginMinButton{background-image:url(./config/qss/style_1/images/min-normal.png);border:none;outline:none;}
+QPushButton#_LoginMinButton:hover:!pressed{background-image:url(./config/qss/style_1/images/min-hover.png);}
+QPushButton#_LoginMinButton:pressed{background-image:url(./config/qss/style_1/images/min-pressed.png);}
+
+/*QPushButton#_RegMinButton{background-image:url(./config/qss/style_1/images/btn_mini_down.png);border:none;outline:none;}
+QPushButton#_RegMinButton:hover:!pressed{background-image:url(./config/qss/style_1/images/btn_mini_highlight.png);}*/
+
+QPushButton#_RegCloseButton{background-image:url(./config/qss/style_1/images/close-normal.png);border:none;outline:none;}
+QPushButton#_RegCloseButton:hover:!pressed{background-image:url(./config/qss/style_1/images/close-hover.png);}
+QPushButton#_RegCloseButton:pressed{background-image:url(./config/qss/style_1/images/close-pressed.png);}
+
+QPushButton#_CancelButton{background-image: url(./config/qss/style_1/images/cancel_normal.png);border:none;outline:none}
+QPushButton#_CancelButton:hover:!pressed{background-image: url(./config/qss/style_1/images/cancel_hover.png);}
+QPushButton#_CancelButton:pressed{background-image:url(./config/qss/style_1/images/cancel_press.png)}
+
+QPushButton#_mailButton {border-image:url(./config/qss/style_1/images/desktop-bg.png);color:black;border-radius: 3px;}
+
+QPushButton#_errorBoxButton{border-image:url(./config/qss/style_1/images/errorButton.png);border-radius: 1px;}
+QPushButton#_errorButton{border-image:url(./config/qss/style_1/images/errorButton2.png);border-radius: 1px;}
+QPushButton#_errorBoxButton_2{border-image:url(./config/qss/style_1/images/errorButton2.png);border-radius: 1px;}
+
+QPushButton#pushButton {border-image:url(./config/qss/style_1/images/empty.png);color:black;border-radius: 3px;outline:none}
+QPushButton#pushButton_2 {border-image:url(./config/qss/style_1/images/empty.png);color:black;border-radius: 3px;outline:none}
+QPushButton#pushButton_3 {border-image:url(./config/qss/style_1/images/empty-bg.png);color:black;border-radius: 3px;outline:none}
+
+/*the combox style*/
+QComboBox::drop-down {top:2px;right:1px;bottom:0px;width:10px;height:7px;border:none }
+
+QComboBox::down-arrow {width:10px;height:7px;background-image:url(./config/qss/style_1/images/NotExpand.png)}
+QComboBox::down-arrow:on {background-image:url(./config/qss/style_1/images/Expand.png);}   
+
+QComboBox QAbstractItemView {padding:1px;color:black;selection-background-color:rgb(85,170,255);border-image:url(./config/qss/style_1/images/desktop-bg.png);}
+
+/* QComboBox's scrollbar style*/
+QComboBox QScrollBar:vertical {margin: 13px 0px 13px 0px;background-color: #417cd7; border: 0px;width: 12px;}
+QComboBox QScrollBar::handle:vertical {background-color: #2364c9 ; width: 12px; }
+QComboBox QScrollBar::add-page:vertical {background-color: #417cd7; }
+QComboBox QScrollBar::sub-page:vertical {background-color: #417cd7; }
+QComboBox QScrollBar::sub-line:vertical {subcontrol-origin: margin; border: none; height:13px}
+QComboBox QScrollBar::up-arrow:vertical { 
+subcontrol-origin: margin;
+background-color: #417cd7;
+image:url(./config/qss/style_1/images/ScrollBar-bottom-normal.png); 
+height:13px
+}
+QComboBox QScrollBar::up-arrow:vertical:hover { 
+subcontrol-origin: margin;
+background-color: #417cd7;
+image:url(./config/qss/style_1/images/ScrollBar-bottom-hover.png); 
+height:13px
+}
+QComboBox QScrollBar::down-arrow:vertical { 
+subcontrol-origin: margin;
+background-color: #417cd7;
+image:url(./config/qss/style_1/images/ScrollBar-top-normal.png); 
+height:13px
+}
+QComboBox QScrollBar::down-arrow:vertical:hover { 
+subcontrol-origin: margin;
+background-color: #417cd7;
+image:url(./config/qss/style_1/images/ScrollBar-top-hover.png); 
+height:13px
+}
+QComboBox QScrollBar::add-line:vertical {subcontrol-origin: margin; border: none; height:13px}
+
+/**********************************************************************************************************************************
+Title:            UserInfo wnd  Qss File
+Create Date:      2012/5/20
+Creator:          Trump
+**********************************************************************************************************************************/
+/* userinfo edit's wnd*/
+QClouldSeeUserWnd QPushButton {border-image:url(./config/qss/style_1/images/common_but_normal.png);border:none;outline:none;color:rgb(153, 153, 153);}
+QClouldSeeUserWnd QPushButton:hover:!pressed {border-image:url(./config/qss/style_1/images/common_but_hover.png);}
+QClouldSeeUserWnd QPushButton:pressed {border-image:url(./config/qss/style_1/images/common_but_pressed.png);}
+QClouldSeeUserWnd QPushButton:!enabled {border-image: url();}
+
+QClouldSeeUserWnd QPushButton#_infoWndCloseBut {border-image:url(./config/qss/style_1/images/sub_close_bg-normal.png);border:none;outline:none;}
+QClouldSeeUserWnd QPushButton#_infoWndCloseBut:hover:!pressed {border-image:url(./config/qss/style_1/images/sub_close_bg-hover.png);}
+QClouldSeeUserWnd QPushButton#_infoWndCloseBut:pressed {border-image:url(./config/qss/style_1/images/sub_close_bg-pressed.png);}
+
+QToolButton#_HeadButton {border: none;margin:0px; }
+QToolButton#_HeadButton:hover{border: 2px solid rgb(49,187,252);}
+
+QGroupBox#groupBox {border:none}
+
+QRadioButton {color:rgb(153, 153, 153);border:none;outline:none}
+QRadioButton::indicator {width:12px;height:11px;}
+QRadioButton::indicator:unchecked {image:url(./config/qss/style_1/images/indicator-normal.png);}
+QRadioButton::indicator:checked {image:url(./config/qss/style_1/images/indicator-checked.png);}
+/*QCheckBox::indicator:unchecked:pressed {image:url(./config/qss/style_1/images/indicator-checked.png);}
+QCheckBox::indicator:checked:pressed {image:url(./config/qss/style_1/images/indicator-normal.png);}*/
+
+/* QScrollArea QScrollBar:vertical {margin: 13px 0px 13px 0px;background-color: rgb(238,238,238); border:0px;width: 10px;}*/
+QScrollArea QScrollBar::handle:vertical {background-color: rgb(200,200,200) ; width: 10px; }
+QScrollArea QScrollBar::add-page:vertical {background-color: rgb(238,238,238); }
+QScrollArea QScrollBar::sub-page:vertical {background-color: rgb(238,238,238); }
+QScrollArea QScrollBar::sub-line:vertical {subcontrol-origin: margin; border: none; height:13px}
+QScrollArea QScrollBar::up-arrow:vertical { 
+subcontrol-origin: margin;
+background-color: rgb(238,238,238);
+image:url(./config/qss/style_1/images/ScrollBar-bottom-normal.png); 
+height:13px
+}
+/*right:2px;right:2px;*/
+QScrollArea QScrollBar::up-arrow:vertical:hover { 
+subcontrol-origin: margin;
+background-color: rgb(238,238,238);
+image:url(./config/qss/style_1/images/ScrollBar-bottom-hover.png); 
+height:13px
+}
+QScrollArea QScrollBar::down-arrow:vertical { 
+subcontrol-origin: margin;
+background-color: rgb(238,238,238);
+image:url(./config/qss/style_1/images/ScrollBar-top-normal.png); height:13px}
+QScrollArea QScrollBar::down-arrow:vertical:hover { 
+subcontrol-origin: margin;
+background-color: rgb(238,238,238);
+image:url(./config/qss/style_1/images/ScrollBar-top-hover.png); 
+height:13px
+}
+QScrollArea QScrollBar::add-line:vertical {subcontrol-origin: margin; border: none; height:13px}
+
+ 
+
+/**********************************************************************************************************************************
+Title:            Search wnd  Qss File
+Create Date:      2012/5/21
+Creator:          Trump
+**********************************************************************************************************************************/
+QTabWidget#_tabWidget QTabBar::tab {height:34px;width:125px;}
+QTabWidget#_tabWidget QTabBar::tab {border-image:url(./config/qss/style_1/images/SearchUserTab-normal.png);}
+QTabWidget#_tabWidget QTabBar::tab:hover:!selected {border-image:url(./config/qss/style_1/images/SearchUserTab-hover.png);}
+QTabWidget#_tabWidget QTabBar::tab:selected {border-image:url(./config/qss/style_1/images/SearchUserTab-pressed.png);}
+QTabWidget#_tabWidget QTabBar::tab:last:top {border-image:url(./config/qss/style_1/images/SearchGroupTab-normal.png);}
+QTabWidget#_tabWidget QTabBar::tab:last:top:hover:!selected {border-image:url(./config/qss/style_1/images/SearchGroupTab-hover.png);}
+QTabWidget#_tabWidget QTabBar::tab:last:top:selected {border-image:url(./config/qss/style_1/images/SearchGroupTab-pressed.png);}
+
+QPushButton#_FindFriendButton {border-image:url(./config/qss/style_1/images/Login_normal.png);border:none;outline:none;color:black}
+QPushButton#_FindFriendButton:hover:!pressed {border-image:url(./config/qss/style_1/images/Login_hover.png);}
+QPushButton#_FindFriendButton:pressed {border-image:url(./config/qss/style_1/images/Login_pressed.png);}
+QPushButton#_FindFriendButton:!enabled {border-image: url();}
+
+QPushButton#_FindGroupButton {border-image:url(./config/qss/style_1/images/Login_normal.png);border:none;outline:none;color:black}
+QPushButton#_FindGroupButton:hover:!pressed {border-image:url(./config/qss/style_1/images/Login_hover.png);}
+QPushButton#_FindGroupButton:pressed {border-image:url(./config/qss/style_1/images/Login_pressed.png);}
+QPushButton#_FindGroupButton:!enabled {border-image: url();}
+
+QPushButton#_SearchCloeButton {border-image:url(./config/qss/style_1/images/sub_close_bg-normal.png);border:none;outline:none}
+QPushButton#_SearchCloeButton:hover:!pressed {border-image:url(./config/qss/style_1/images/sub_close_bg-hover.png);}
+QPushButton#_SearchCloeButton:pressed {border-image:url(./config/qss/style_1/images/sub_close_bg-pressed.png);}
+
+QPushButton#_SeaMinButton {border-image:url(./config/qss/style_1/images/sub_min_bg-normal.png);}
+QPushButton#_SeaMinButton:hover:!pressed {border-image:url(./config/qss/style_1/images/sub_min_bg-hover.png);}
+QPushButton#_SeaMinButton:pressed {border-image:url(./config/qss/style_1/images/sub_min_bg-pressed.png);}
+
+QPushButton#_UserButton {border-image: url(./config/qss/style_1/images/user.png);}
+QPushButton#_GroupButton {border-image: url(./config/qss/style_1/images/group.png);}
+
+QLineEdit#_FriendLineEdit,QLineEdit#_GroupLineEdit{border: 1px solid #8f8f91;border-radius: 5px;
+margin:0;line-height:1.7em;color: rgb(106, 106, 106);
+}
+
+QCloudSearchExplorer QPushButton {border-image:url(./config/qss/style_1/images/button-style1-normal.png);border:none;outline:none;color: rgb(36, 132, 229)}
+QCloudSearchExplorer QPushButton:hover:!pressed {border-image:url(./config/qss/style_1/images/button-style1-hover.png);}
+QCloudSearchExplorer QPushButton:pressed {border-image:url(./config/qss/style_1/images/button-style1-pressed.png);}
+QCloudSearchExplorer QPushButton:disabled {color: gray;}
+
+/* QCheckBox {border:none;outline:none} */
+
+QRequestAddPeerWnd QPushButton#_iconBut {border-image:url(./config/qss/style_1/images/friend.png);border:none;outline:none;}
+QRequestJoinGroupWnd QPushButton#_iconBut {border-image:url(./config/qss/style_1/images/group.png);border:none;outline:none;}
+QReplyAddPeerWnd QPushButton#_iconBut {border-image:url(./config/qss/style_1/images/friend.png);border:none;outline:none;}
+QReplyJoinGroupWnd QPushButton#_iconBut {border-image:url(./config/qss/style_1/images/group.png);border:none;outline:none;}
+
+QReplyAddPeerWnd QLabel {color:black;}
+QReplyJoinGroupWnd QLabel {color:black;}
+
+QRequestJoinGroupWnd QPushButton {border-image:url(./config/qss/style_1/images/button-style1-normal.png);border:none;outline:none;}
+QRequestJoinGroupWnd QPushButton:hover:!pressed {border-image:url(./config/qss/style_1/images/button-style1-hover.png);}
+QRequestJoinGroupWnd QPushButton:pressed {border-image:url(./config/qss/style_1/images/button-style1-pressed.png);}
+
+QReplyJoinGroupWnd QPushButton {border-image:url(./config/qss/style_1/images/button-style1-normal.png);border:none;outline:none;}
+QReplyJoinGroupWnd QPushButton:hover:!pressed {border-image:url(./config/qss/style_1/images/button-style1-hover.png);}
+QReplyJoinGroupWnd QPushButton:pressed {border-image:url(./config/qss/style_1/images/button-style1-pressed.png);}
+
+QPushButton#_AddButton {border-image:url(./config/qss/style_1/images/common_but_normal.png);border:none;outline:none;}
+QPushButton#_AddButton:hover:!pressed {border-image:url(./config/qss/style_1/images/common_but_hover.png);}
+QPushButton#_AddButton:pressed {border-image:url(./config/qss/style_1/images/common_but_pressed.png);}
+
+QPushButton#_InfoButton {border-image:url(./config/qss/style_1/images/common_but_normal.png);border:none;outline:none;}
+QPushButton#_InfoButton:hover:!pressed {border-image:url(./config/qss/style_1/images/common_but_hover.png);}
+QPushButton#_InfoButton:pressed {border-image:url(./config/qss/style_1/images/common_but_pressed.png);}
+
+QPushButton#_NoAddButton {background-image:url(./config/qss/style_1/images/common_but_normal.png);border:none;outline:none;}
+QPushButton#_NoAddButton:hover:!pressed {background-image:url(./config/qss/style_1/images/common_but_hover.png);}
+QPushButton#_NoAddButton:pressed {background-image:url(./config/qss/style_1/images/common_but_pressed.png);}
+QPushButton#addfriendclose {background-image:url(./config/qss/style_1/images/sub_close_bg-normal.png);border:none;outline:none;}
+QPushButton#addfriendclose:hover:!pressed{background-image:url(./config/qss/style_1/images/sub_close_bg-hover.png);}
+QPushButton#addfriendclose:pressed{background-image:url(./config/qss/style_1/images/sub_close_bg-pressed.png);}
+QLabel#label_tx {background-image:url(./config/qss/style_1/images/addfriendtx.png);border:none;outline:none;}
+QLabel#group_tx {background-image:url(./config/qss/style_1/images/addgrouptx.png);border:none;outline:none;}
+
+QPushButton#_accept {background-image:url(./config/qss/style_1/images/button-style1-normal.png);border:none;outline:none;}
+QPushButton#_accept:hover:!pressed {background-image:url(./config/qss/style_1/images/button-style1-hover.png);}
+QPushButton#_accept:pressed {background-image:url(./config/qss/style_1/images/button-style1-pressed.png);}
+QPushButton#_refuse {background-image:url(./config/qss/style_1/images/button-style1-normal.png);border:none;outline:none;}
+QPushButton#_refuse:hover:!pressed {background-image:url(./config/qss/style_1/images/button-style1-hover.png);}
+QPushButton#_refuse:pressed {background-image:url(./config/qss/style_1/images/button-style1-pressed.png);}
+QPushButton#joingroupclose {background-image:url(./config/qss/style_1/images/sub_close_bg-normal.png);border:none;outline:none;}
+QPushButton#joingroupclose:hover:!pressed {background-image:url(./config/qss/style_1/images/sub_close_bg-hover.png);}
+QPushButton#joingroupclose:pressed {background-image:url(./config/qss/style_1/images/sub_close_bg-pressed.png);}
+
+/**********************************************************************************************************************************
+Title:            Chat wnd  Qss File
+Create Date:      2012/5/23
+Creator:          Trump
+**********************************************************************************************************************************/
+
+QPeerChatWnd QFrame QLabel {color:rgb(33,33,33);}
+QPeerChatWnd QPushButton {color:black;}
+QGroupChatWnd QFrame QLabel {color:rgb(33,33,33);}
+QGroupChatWnd QPushButton {color:black;}
+QColorDialog QLabel{color:black;}
+
+QWidget#send_wid {border-image:url(./config/qss/style_1/images/chat_bottom_bg.png);border:none;outline:none;}
+QFrame#chatFrame {border-image:url(./config/qss/style_1/images/chat-bg.png);border:none;outline:none;}
+QPeerChatWnd QStackedWidget#stackedWidget {border-image:url(./config/qss/style_1/images/chat_right_bg.png);border:none;outline:none;}
+QGroupChatWnd QStackedWidget#stackedWidget {border-image:url(./config/qss/style_1/images/chat_right_bg.png);border:none;outline:none;}
+
+QPeerChatWnd QLabel#photoLabel {border-image:url(./config/qss/style_1/images/addfriendtx.png);border:none;outline:none;}
+QPeerChatWnd QPushButton#_iconBut {border-image:url(./config/qss/style_1/images/friend.png);border:none;outline:none;}
+
+QGroupChatWnd QLabel#photoLabel {border-image:url(./config/qss/style_1/images/addgrouptx.png);border:none;outline:none;}
+QGroupChatWnd QPushButton#_iconBut {border-image:url(./config/qss/style_1/images/groups_class_icon.png);border:none;outline:none;}
+
+QFrame#toolFrame {border-image:url(./config/qss/style_1/images/chat_tool_bg.png);border:none;outline:none;}
+
+QToolButton#m_textUnderline {border-image:url(./config/qss/style_1/images/textunder.png);border:none;outline:none;}
+QToolButton#m_textUnderline:hover:!pressed {border-image:url(./config/qss/style_1/images/textunder_hover.png);}
+QToolButton#m_textUnderline:checked {border-image:url(./config/qss/style_1/images/textunder_checked.png);}
+
+QToolButton#m_textbold{border-image:url(./config/qss/style_1/images/textbold.png);border:none;outline:none;}
+QToolButton#m_textbold:hover:!pressed {border-image:url(./config/qss/style_1/images/textbold_hover.png);}
+QToolButton#m_textbold:checked {border-image:url(./config/qss/style_1/images/textbold_checked.png);}
+
+QToolButton#m_textitalic {border-image:url(./config/qss/style_1/images/textitalic.png);border:none;outline:none;}
+QToolButton#m_textitalic:hover:!pressed {border-image:url(./config/qss/style_1/images/textitalic_hover.png);}
+QToolButton#m_textitalic:checked {border-image:url(./config/qss/style_1/images/textitalic_checked.png);}
+
+QToolButton#m_history {border-image:url(./config/qss/style_1/images/record_history.png);border:none;outline:none;}
+QToolButton#m_history:hover:!pressed {border-image:url(./config/qss/style_1/images/record_history_hover.png);}
+QToolButton#m_history:checked {border-image:url(./config/qss/style_1/images/record_history_checked.png);}
+
+QPushButton#m_send {border-image:url(./config/qss/style_1/images/common_but_normal.png);border:none;outline:none;}
+QPushButton#m_send:hover:!pressed {border-image:url(./config/qss/style_1/images/common_but_hover.png);}
+QPushButton#m_send:pressed {border-image:url(./config/qss/style_1/images/common_but_pressed.png);}
+
+/**************************************************************************************************************
+Title:            weather wnd  Qss File
+Create Date:      2012/5/23
+Creator:          Trump
+**************************************************************************************************************/
+Weather QLabel{color:black}
+QPushButton#weaClose {border-image:url(./config/qss/style_1/images/sub_close_bg-normal.png);border:none;outline:none;color:white}
+QPushButton#weaClose:hover:!pressed {border-image:url(./config/qss/style_1/images/sub_close_bg-hover.png);}
+QPushButton#weaClose:pressed {border-image:url(./config/qss/style_1/images/sub_close_bg-pressed.png);}
+QPushButton#weaMin {border-image:url(./config/qss/style_1/images/sub_min_bg-normal.png);border:none;outline:none;color:white}
+QPushButton#weaMin:hover:!pressed {border-image:url(./config/qss/style_1/images/sub_min_bg-hover.png);}
+QPushButton#weaMin:pressed {border-image:url(./config/qss/style_1/images/sub_min_bg-pressed.png);}
+
+/**************************************************************************************************************
+Title:            Video wnd  Qss File
+Create Date:      2012/5/23
+Creator:          Trump
+QFrame#videoFrame{background-color:rgb(51,51,102);}
+**************************************************************************************************************/
+
+QWidget#VideoMainWindow{background-color:rgba(0,0,0,255);border:none;outline:none;}
+QWidget#_floatWidget {border-image:url(:/images/floatTool_bg.png);border:none;outline:none;}
+
+QToolButton#_streth {border-image:url(./config/qss/style_1/images/tool_streth_but_normal.png);border:none;outline:none;}
+QToolButton#_streth:hover:!pressed {border-image:url(./config/qss/style_1/images/tool_streth_but_hover.png);}
+QToolButton#_streth:checked {border-image:url(./config/qss/style_1/images/tool_streth_but_pressed.png);}
+
+QToolButton#_noStreth {border-image:url(./config/qss/style_1/images/tool_noStreth_but_normal.png);border:none;outline:none;}
+QToolButton#_noStreth:hover:!pressed {border-image:url(./config/qss/style_1/images/tool_noStreth_but_hover.png);}
+QToolButton#_noStreth:checked {border-image:url(./config/qss/style_1/images/tool_noStreth_but_pressed.png);}
+
+QToolButton#_minMaxBut {border-image:url(./config/qss/style_1/images/tool_min_but_normal.png);border:none;outline:none;color:white}
+QToolButton#_minMaxBut:hover:!pressed {border-image:url(./config/qss/style_1/images/tool_min_but_hover.png);}
+QToolButton#_minMaxBut:pressed {border-image:url(./config/qss/style_1/images/tool_min_but_pressed.png);}
+
+/**************************************************************************************************************
+Title:            msgbox wnd  Qss File
+Create Date:      2012/5/23./config/qss/style_1/images/tab-normal.png
+Creator:          Trump./config/qss/style_1/images/border-tab-normal.png
+**************************************************************************************************************/
+CoreMsgbox QLabel {color:white}
+QTabWidget#_BoxTabWidget {border-image:url(./config/qss/style_1/images/tabwnd-bg.png);}
+QTabWidget#_BoxTabWidget QTabBar::tab {color:black;height:23px;width:71px;}
+QTabWidget#_BoxTabWidget QTabBar::tab {border-image:url(./config/qss/style_1/images/tabnormal.png);}
+QTabWidget#_BoxTabWidget QTabBar::tab:hover:!selected {border-image:url(./config/qss/style_1/images/tabhover.png);}
+QTabWidget#_BoxTabWidget QTabBar::tab:selected {border-image:url(./config/qss/style_1/images/tabpressed.png);}
+QTabWidget#_BoxTabWidget QTabBar::tab:last:top {
+border-image:url(./config/qss/style_1/images/right_tabnormal.png);
+}
+QTabWidget#_BoxTabWidget QTabBar::tab:last:top:hover:!selected {
+border-image:url(./config/qss/style_1/images/right_tabhover.png);
+}
+QTabWidget#_BoxTabWidget QTabBar::tab:last:top:selected {border-image:url(./config/qss/style_1/images/right_tabpressed.png);}
+
+QPushButton#_BoxcloseButton {border-image:url(./config/qss/style_1/images/sub_close_bg-normal.png);border:none;outline:none;color:white}
+QPushButton#_BoxcloseButton:hover:!pressed {border-image:url(./config/qss/style_1/images/sub_close_bg-hover.png);}
+QPushButton#_BoxcloseButton:pressed {border-image:url(./config/qss/style_1/images/sub_close_bg-pressed.png);}
+
+QPushButton#_removeAllMsg {border-image:url(./config/qss/style_1/images/del-normal.png);border:none;outline:none;}
+QPushButton#_removeAllMsg:hover:!pressed {border-image:url(./config/qss/style_1/images/del-hover.png);}
+QPushButton#_removeAllMsg:pressed {border-image:url(./config/qss/style_1/images/del-pressed.png);}
+QPushButton#_removeAllMsg:!enabled {border-image: url();}
+
+QPushButton#_ignoreAllMsg {border-image:url(./config/qss/style_1/images/ignore-normal.png);border:none;outline:none;color:white}
+QPushButton#_ignoreAllMsg:hover:!pressed {border-image:url(./config/qss/style_1/images/ignore-hover.png);}
+QPushButton#_ignoreAllMsg:pressed {border-image:url(./config/qss/style_1/images/ignore-pressed.png);}
+QPushButton#_ignoreAllMsg:!enabled {border-image: url();}
+
+QPushButton#_removeAllRequest {border-image:url(./config/qss/style_1/images/del-normal.png);border:none;outline:none;}
+QPushButton#_removeAllRequest:hover:!pressed {border-image:url(./config/qss/style_1/images/del-hover.png);}
+QPushButton#_removeAllRequest:pressed {border-image:url(./config/qss/style_1/images/del-pressed.png);}
+QPushButton#_removeAllRequest:!enabled {border-image: url();}
+
+QPushButton#_ignoreAllRequest {border-image:url(./config/qss/style_1/images/ignore-normal.png);border:none;outline:none;color:white}
+QPushButton#_ignoreAllRequest:hover:!pressed {border-image:url(./config/qss/style_1/images/ignore-hover.png);}
+QPushButton#_ignoreAllRequest:pressed {border-image:url(./config/qss/style_1/images/ignore-pressed.png);}
+QPushButton#_ignoreAllRequest:!enabled {border-image: url();}
+
+QSystemComingMsgBox QLabel {color:white}
+QSystemComingMsgBox QPushButton {border-image:url(./config/qss/style_1/images/button-style1-normal.png);border:none;outline:none;color:black}
+QSystemComingMsgBox QPushButton:hover:!pressed {border-image:url(./config/qss/style_1/images/button-style1-hover.png);}
+QSystemComingMsgBox QPushButton:pressed {border-image:url(./config/qss/style_1/images/button-style1-pressed.png);}
+QSystemComingMsgBox QPushButton:!enabled {border-image: url();}
+
+/**************************************************************************************************************
+Title:            UserItemWidget wnd  Qss File
+Create Date:      2012/6/3
+Creator:          Trump
+**************************************************************************************************************/
+
+QPushButton#_userDel {background-image:url(./config/qss/style_1/images/WebClose.png);border:none;outline:none;}
+QPushButton#_UserHead {background-image:url(./config/qss/style_1/images/list_icon.png);border:none;outline:none;}
+
+/**************************************************************************************************************
+Title:            desktop wnd  Qss File
+Create Date:      2012/6/18
+Creator:          Trump
+**************************************************************************************************************/
+QWidget#barwidget {border-image:url(./config/qss/style_1/images/taskbar.png);border:none;outline:none}
+
+QPushButton#_iconButton {border-image:url(./config/qss/style_1/images/empty.png);border:none;outline:none;}
+QTaskBar {border:none}
+
+QTaskbarNode {border-image:url(./config/qss/style_1/images/modify-userheadpic-normal.png);border:none;outline:none;color:white;/*font-size:10p*/}
+QTaskbarNode:hover:!pressed {border-image:url(./config/qss/style_1/images/modify-userheadpic-hover.png);}
+QTaskbarNode:pressed {border-image:url(./config/qss/style_1/images/modify-userheadpic-pressed.png);}
+QTaskbarNode:!enabled {border-image: url();}
+
+QPushButton#message_ok {background-image:url(./config/qss/style_1/images/common_but_normal.png);border:none;outline:none;}
+QPushButton#message_ok:hover {background-image:url(./config/qss/style_1/images/common_but_hover.png);}
+
+QPushButton#message_cancel {background-image:url(./config/qss/style_1/images/common_but_normal.png);border:none;outline:none;}
+QPushButton#message_cancel:hover {background-image:url(./config/qss/style_1/images/common_but_hover.png);}
+
+QPushButton#message_close {border-image:url(./config/qss/style_1/images/sub_close_bg-normal.png);border:none;outline:none;}
+QPushButton#message_close:hover:!pressed {border-image:url(./config/qss/style_1/images/sub_close_bg-hover.png);}
+QPushButton#message_close:pressed {border-image:url(./config/qss/style_1/images/sub_close_bg-pressed.png);}
+QLabel#left_label {background-image:url(./config/qss/style_1/images/message_left.png);border:none;outline:none;}
+
+/**************************************************************************************************************
+Title:            calendar wnd  Qss File
+Create Date:      2012/6/21
+Creator:          Trump
+**************************************************************************************************************/
+
+QFrame#topFrame {border-image:url(./config/qss/style_1/images/sub_title_panel.png);border:none;outline:none;}
+
+ 
+
+/**************************************************************************************************************
+Title:            wizard wnd  Qss File
+Create Date:      2012/6/25
+Creator:          Trump
+**************************************************************************************************************/
+QToolButton#type1 { background-color: rgb(118, 193, 250); }
+QToolButton#type2 { background-color: rgb(118, 193, 250); }
+QToolButton#type3 { background-color: rgb(118, 193, 250); }
+QToolButton#type4{ background-color: rgb(118, 193, 250); }
+/*
+QToolButton#type1:hover:!pressed { background-color: rgb(77, 169, 239) }
+QToolButton#type2:hover:!pressed { background-color: rgb(77, 169, 239) }
+QToolButton#type3:hover:!pressed { background-color: rgb(77, 169, 239) }
+QToolButton#type4:hover:!pressed { background-color: rgb(77, 169, 239) }
+*/
+QToolButton#type1:checked { background-color: rgb(0, 255, 0) }
+QToolButton#type2:checked { background-color: rgb(0, 255, 0) }
+QToolButton#type3:checked { background-color: rgb(0, 255, 0) }
+QToolButton#type4:checked { background-color: rgb(0, 255, 0) }
+
+GroupWizardDlg QLabel{color:black;}
+GroupWizardDlg QLineEdit{color:black;}
+QWizardPage { background-color:rgb(218,240,251);padding:0px}
+
+/**************************************************************************************************************
+Title:            sub wnd  Qss File
+Create Date:      2012/7/3
+Creator:          Trump
+**************************************************************************************************************/
+
+QPushButton#_minBut{border-image:url(./config/qss/style_1/images/sub_min_bg-normal.png);border:none;outline:none;}
+QPushButton#_minBut:hover:!pressed{border-image:url(./config/qss/style_1/images/sub_min_bg-hover.png);}
+QPushButton#_minBut:pressed{border-image:url(./config/qss/style_1/images/sub_min_bg-pressed.png);}
+
+QPushButton#_maxBut{border-image:url(./config/qss/style_1/images/sub_max_bg-normal.png);border:none;outline:none;}
+QPushButton#_maxBut:hover:!pressed{border-image:url(./config/qss/style_1/images/sub_max_bg-hover.png);}
+QPushButton#_maxBut:pressed{border-image:url(./config/qss/style_1/images/sub_max_bg-pressed.png);}
+
+QPushButton#_closeBut{border-image:url(./config/qss/style_1/images/sub_close_bg-normal.png);border:none;outline:none;}
+QPushButton#_closeBut:hover:!pressed{border-image:url(./config/qss/style_1/images/sub_close_bg-hover.png);}
+QPushButton#_closeBut:pressed{border-image:url(./config/qss/style_1/images/sub_close_bg-pressed.png);}
+
+QPushButton#_extraNo1{border-image:url(./config/qss/style_1/images/sub_full_bg-normal.png);border:none;outline:none;}
+QPushButton#_extraNo1:hover:!pressed{border-image:url(./config/qss/style_1/images/sub_full_bg-hover.png);}
+QPushButton#_extraNo1:pressed{border-image:url(./config/qss/style_1/images/sub_full_bg-pressed.png);}
+/*
+QPushButton#_extraNo1{border-image:url(./config/qss/style_1/images/sub_full_bg.png);border:none;outline:none;}
+QPushButton#_extraNo1:hover:!pressed{border-image:url(./config/qss/style_1/images/sub_full_bg.png);}
+QPushButton#_extraNo1:hover:!pressed{border-image:url(./config/qss/style_1/images/sub_full_bg.png);}
+*/
+/**************************************************************************************************************
+Title:            Info Button wnd  Qss File
+Create Date:      2012/7/4
+Creator:          Trump
+**************************************************************************************************************/
+
+QPushButton#_SaveButton{color:black;border:none;outline:none;}
+QPushButton#_CloseButton_info{color:black;border:none;outline:none;}
+QPushButton#_EditButton{color:black;border:none;outline:none;}
+
+QToolButton#_StatusButton{border:none;outline:none;}
+QToolButton#_StatusButton:hover{background-image:url(./config/qss/style_1/images/white_frame.png);}
+
+/**************************************************************************************************************
+Title:            Modify Password wnd  Qss File
+Create Date:      2013/8/24
+Creator:          Trump
+**************************************************************************************************************/
+ModifyPasswordWnd QLabel {color:black;}
+ModifyPasswordWnd QLineEdit {color:black;}
+
+ModifyPasswordWnd {border-image:url(./config/qss/style_1/images/changePassword_bg.png);border:none;outline:none;}
+
+ 
+
+QPushButton#_modifyBut {border-image:url(./config/qss/style_1/images/password_but_normal.png);color:white;border:none;outline:none;}
+QPushButton#_modifyBut:hover:!pressed{border-image:url(./config/qss/style_1/images/password_but_hover.png);}
+QPushButton#_modifyBut:pressed{border-image:url(./config/qss/style_1/images/password_but_pressed.png);}
+QPushButton#_modifyBut:!enabled{border-image: url(./config/qss/style_1/images/password_but_disable.png);color:gray;}
+
+/**************************************************************************************************************
+Title:            wait wnd  Qss File
+Create Date:      2013/8/29
+Creator:          Trump
+**************************************************************************************************************/
+
+WaitProgressBar QFrame {border-image:url(./config/qss/style_1/images/wait_bg.png);color:white;border:none;outline:none;}
+
+/****************************************************************************************************************
+Title:            device wnd  Qss File
+Create Date:      2013/9/17
+Creator:          Trump
+************************************************************************************************************/
+DeviceInfoWnd QLabel{color:black;}
+DeviceInfoWnd {border-image:url(./config/qss/style_1/images/deviceInfo_bg.png);border:none;outline:none;}
+
+/****************************************************************************************************************
+Title:            GroupInfo wnd  Qss File
+Create Date:      2013/9/18
+Creator:          Trump
+************************************************************************************************************/
+
+GroupInfoWnd QPushButton {border-image:url(./config/qss/style_1/images/common_but_normal.png);border:none;outline:none;color:rgb(153, 153, 153);}
+GroupInfoWnd QPushButton:hover:!pressed {border-image:url(./config/qss/style_1/images/common_but_hover.png);}
+GroupInfoWnd QPushButton:pressed {border-image:url(./config/qss/style_1/images/common_but_pressed.png);}
+GroupInfoWnd QPushButton:!enabled {border-image: url();}
+
+/****************************************************************************************************************
+Title:            Record wnd  Qss File
+Create Date:      2013/9/18
+Creator:          Trump
+************************************************************************************************************/
+
+QToolButton#m_head {border-image:url(./config/qss/style_1/images/record_first_page.png);border:none;outline:none;}
+QToolButton#m_head:hover:!pressed {border-image:url(./config/qss/style_1/images/record_first_page_hover.png);}
+QToolButton#m_head:pressed {border-image:url(./config/qss/style_1/images/record_first_page_pressed.png);}
+QToolButton#m_head:disabled {border-image:url(./config/qss/style_1/images/record_first_page_disable.png);}
+
+QToolButton#m_tail {border-image:url(./config/qss/style_1/images/record_last_page.png);border:none;outline:none;}
+QToolButton#m_tail:hover:!pressed {border-image:url(./config/qss/style_1/images/record_last_page_hover.png);}
+QToolButton#m_tail:pressed {border-image:url(./config/qss/style_1/images/record_last_page_pressed.png);}
+QToolButton#m_tail:disabled {border-image:url(./config/qss/style_1/images/record_last_page_disable.png);}
+
+QToolButton#m_preview {border-image:url(./config/qss/style_1/images/record_preview_page.png);border:none;outline:none;}
+QToolButton#m_preview:hover:!pressed{border-image:url(./config/qss/style_1/images/record_preview_page_hover.png);}
+QToolButton#m_preview:pressed {border-image:url(./config/qss/style_1/images/record_preview_page_pressed.png);}
+QToolButton#m_preview:disabled {border-image:url(./config/qss/style_1/images/record_preview_page_disable.png);}
+
+QToolButton#m_next {border-image:url(./config/qss/style_1/images/record_next_page.png);border:none;outline:none;}
+QToolButton#m_next:hover:!pressed {border-image:url(./config/qss/style_1/images/record_next_page_hover.png);}
+QToolButton#m_next:pressed {border-image:url(./config/qss/style_1/images/record_next_page_pressed.png);}
+QToolButton#m_next:disabled {border-image:url(./config/qss/style_1/images/record_next_page_disable.png);}
+
+QToolButton#m_dateSelect {border-image:url(./config/qss/style_1/images/record_calender_bg.png);border:none;outline:none;}
+QToolButton#m_dateSelect:hover:!pressed {border-image:url(./config/qss/style_1/images/record_calender_bg_hover.png);}
+QToolButton#m_dateSelect:pressed {border-image:url(./config/qss/style_1/images/record_calender_bg_pressed.png);}
+
+QToolButton#m_find {border-image:url(./config/qss/style_1/images/record_find_bg.png);border:none;outline:none;}
+QToolButton#m_find:hover:!pressed {border-image:url(./config/qss/style_1/images/record_find_bg_hover.png);}
+QToolButton#m_find:pressed {border-image:url(./config/qss/style_1/images/record_find_bg_pressed.png);}
+
+QToolButton#m_textcolor {border-image:url(./config/qss/style_1/images/textcolor_normal.png);border:none;outline:none;}
+QToolButton#m_textcolor:hover:!pressed {border-image:url(./config/qss/style_1/images/textcolor_hover.png);}
+QToolButton#m_textcolor:pressed {border-image:url(./config/qss/style_1/images/textcolor_pressed.png);}
+
+QToolButton#m_msgMangr {border-image:url(./config/qss/style_1/images/record_mngr_normal.png);border:none;outline:none;}
+QToolButton#m_msgMangr:hover:!pressed {border-image:url(./config/qss/style_1/images/record_mngr_hover.png);}
+
+ 
+QPushButton#m_closeMsg {border-image:url(./config/qss/style_1/images/record_close_normal.png);border:none;outline:none;}
+QPushButton#m_closeMsg:hover {border-image:url(./config/qss/style_1/images/record_close_hover.png);}
+
+QFrame#_topChatFrame {border-image:url(./config/qss/style_1/images/record_top_frame.png);border:none;outline:none;}
+
+/****************************************************************************************************************
+Title:            HeadPhoto wnd  Qss File
+Create Date:      2013/9/29
+Creator:          Trump
+************************************************************************************************************/
+
+HeadPhoto {border-image:url(./config/qss/style_1/images/headPhoto_bg.png);border:none;outline:none;}
+
+QPushButton#_cancelBut {border-image:url(./config/qss/style_1/images/common_but_normal.png);border:none;outline:none;color:black;}
+QPushButton#_cancelBut:hover:!pressed {border-image:url(./config/qss/style_1/images/common_but_hover.png);}
+QPushButton#_cancelBut:pressed {border-image:url(./config/qss/style_1/images/common_but_pressed.png);}
+
+QPushButton#_sureBut {border-image:url(./config/qss/style_1/images/common_but_normal.png);border:none;outline:none;color:black;}
+QPushButton#_sureBut:hover:!pressed {border-image:url(./config/qss/style_1/images/common_but_hover.png);}
+QPushButton#_sureBut:pressed {border-image:url(./config/qss/style_1/images/common_but_pressed.png);}
+
+QToolBoxButton {min-height:40px;}
+QToolBox::tab { 
+   min-height:80px;
+   border:none;outline:none;text-align:center;
+         border-image:url(./config/qss/style_1/images/toolBox_normal.png);
+     }
+
+QToolBox::tab:selected {
+   border-image:url(./config/qss/style_1/images/toolBox_selected.png);
+     }
+  
+HeadPhoto QToolButton {border: 1px solid rgb(171,181,191); border-radius: 6px;}
+HeadPhoto QToolButton:hover{border: 2px solid rgb(49,187,252)}
+HeadPhoto QToolButton:checked {border:3px solid rgb(49,187,252)}
+
+/****************************************************************************************************************
+Title:            About wnd  Qss File
+Create Date:      2013/9/30
+Creator:          Trump
+************************************************************************************************************/
+
+ 
+
+AboutPlatForm {border-image:url(./config/qss/style_1/images/about_bg.png);border:none;outline:none;}
+AboutPlatForm QLabel#_verLabel {color:black;}
+AboutPlatForm QLabel#_companyLabel {color:black;}
+AboutPlatForm QLabel#_rightLabel {color:black;}

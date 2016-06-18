@@ -12,6 +12,11 @@
         <file>libs/Both_Detect_DefectOrlight.dll</file>
         <file>configs/gpldata01.txt</file>
         <file>configs/gpldata02.txt</file>
+        <file>icons/greenlight.ico</file>
+        <file>icons/redlight.ico</file>
+        <file>skins/default.qss</file>
+        <file>skins/example1.qss</file>
+        <file>skins/example2.qss</file>
     </qresource>
     <qresource prefix="/lang">
         <file>fiber2.qm</file>

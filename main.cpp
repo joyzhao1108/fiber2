@@ -57,6 +57,8 @@ int main(int argc, char *argv[])
                         topRight, Qt::white);
     //establishConnections();
 
+    YXENVIRONMENT::setSkinStyles();
+
 
     InitDialog initDlg;
     //initDlg->setAttribute(Qt::WA_DeleteOnClose);

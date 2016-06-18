@@ -1,6 +1,6 @@
 #include "adminsettingpage.h"
 #include "usermanagedialog.h"
-#include "studytemplate.h"
+#include "templatemodel.h"
 ConfigurationPage::ConfigurationPage(QWidget *parent)
     : QWidget(parent)
 {
@@ -192,36 +192,10 @@ TplListPage::TplListPage(QWidget *parent)
 {
     QGroupBox *packageGroup = new QGroupBox(tr("Test Template List"));
 
-    QStandardItemModel *model;
+    TemplateModel *modeltemplate = new TemplateModel;
     QTableView *tableView = new QTableView;
-    model = new QStandardItemModel(this);
-    tableView->setModel(model);
-
-
-
-    QSettings *settings = new QSettings("fiber.ini", QSettings::IniFormat);
-    int size = settings->beginReadArray("Templates");
-    for (int i = 0; i < size; ++i) {
-        settings->setArrayIndex(i);
-        model->setItem(i,0, new QStandardItem(settings->value("ID").toString()));
-        model->setItem(i,1, new QStandardItem(settings->value("Title").toString()));
-        model->setItem(i,2, new QStandardItem(settings->value("Model").toString()));
-        model->setItem(i,3, new QStandardItem(settings->value("TotalHoleCount").toString()));
-        model->setItem(i,4, new QStandardItem(settings->value("LocationHoleCount").toString()));
-        model->setItem(i,5, new QStandardItem(settings->value("Creator").toString()));
-        model->setItem(i,6, new QStandardItem(settings->value("CreateDate").toDateTime().toString("yyyy-MM-dd hh:mm:ss")));
-    }
-    settings->endArray();
-    delete settings;
+    tableView->setModel(modeltemplate);
     tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-
-    model->setHeaderData(0, Qt::Horizontal, tr("ID"));
-    model->setHeaderData(1, Qt::Horizontal, tr("Title"));
-    model->setHeaderData(2, Qt::Horizontal, tr("Model"));
-    model->setHeaderData(3, Qt::Horizontal, tr("TotalHoleCount"));
-    model->setHeaderData(4, Qt::Horizontal, tr("LocationHoleCount"));
-    model->setHeaderData(5, Qt::Horizontal, tr("Creator"));
-    model->setHeaderData(6, Qt::Horizontal, tr("Create Date"));
 
     QPushButton *addButton = new QPushButton(tr("Add"));
     QPushButton *editButton = new QPushButton(tr("Edit"));
@@ -251,6 +225,6 @@ TplListPage::TplListPage(QWidget *parent)
 
 void TplListPage::addnew()
 {
-    StudyTemplate *page1 = new StudyTemplate(this);
-    page1->show();
+    //StudyTemplate *page1 = new StudyTemplate(this);
+    //page1->show();
 }

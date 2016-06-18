@@ -9,193 +9,183 @@ WorkMdi::WorkMdi(QWidget *parent) :
     QWidget *centralWidget = new QWidget(this);
     setWidget(centralWidget);
 
+    configmodel = new HarnessConfigModel(this);
+    templatemodel = new TemplateModel(this);
+
     QHBoxLayout *mainLayout = new QHBoxLayout(centralWidget);
-    //QBrush b=QBrush(QColor(30,30,30),Qt::FDiagPattern);
+
     leftFrame = new QFrame;
     centerFrame = new QFrame;
     rightFrame = new QFrame;
     leftFrame->setFrameShape(QFrame::StyledPanel);
-    leftFrame->setSizePolicy(QSizePolicy::Fixed);
+    //leftFrame->setSizePolicy(QSizePolicy::Fixed);
     centerFrame->setFrameShape(QFrame::StyledPanel);
 
     rightFrame->setFrameShape(QFrame::StyledPanel);
-    rightFrame->setSizePolicy(QSizePolicy::Fixed);
-    //leftFrame->setStyleSheet("background-color: #E1EDD1;");
+    //rightFrame->setSizePolicy(QSizePolicy::Fixed);
+    //centerFrame->setStyleSheet("background-color: #ffffff;");
     //    leftFrame->setAutoFillBackground(true);
     //    leftFrame->setBackgroundRole(QPalette::Background);
     //    leftFrame->setPalette(QPalette(QColor(Qt::green)));
 
-    //QVBoxLayout *leftviewLayout = new QVBoxLayout(leftFrame);
-    QFormLayout *leftviewLayout = new QFormLayout(leftFrame);
+
+    QVBoxLayout *leftviewLayout = new QVBoxLayout(leftFrame);
     hanessComboBox = new QComboBox;
-    hanessComboBox->addItem(tr("default harness"));
-    leftviewLayout->addWidget(hanessComboBox);
-
-    QGridLayout *viewLayout = new QGridLayout(centerFrame);
-    viewLayout->setSpacing(2);
-    titleALabel = new QLabel(tr("male"));
-    titleBLabel = new QLabel(tr("female"));
-    titleCLabel = new QLabel(tr("intensity"));
-    titleALabel->setAutoFillBackground(true);
-    titleALabel->setBackgroundRole(QPalette::Background);
-    titleALabel->setPalette(QPalette(QColor(255, 255, 0)));
-    viewLayout->addWidget(titleALabel, 0, 0, Qt::AlignCenter);
-    viewLayout->addWidget(titleBLabel, 0, 1, Qt::AlignCenter);
-    viewLayout->addWidget(titleCLabel, 0, 2, Qt::AlignCenter);
-
-    //mdiArea->setBackground(b);
-
-    imageALabel = new QLabel(tr("pls capture"));
-    imageALabel->setScaledContents(true);
-    imageALabel->setFixedSize(QSize(200,200));
-    imageBLabel = new QLabel(tr("pls capture"));
-    imageBLabel->setScaledContents(true);
-    imageBLabel->setFixedSize(QSize(200,200));
-    imageCLabel = new QLabel(tr("pls capture"));
-    imageCLabel->setScaledContents(true);
-    imageCLabel->setFixedSize(QSize(200,200));
-    viewLayout->addWidget(imageALabel, 1, 0, Qt::AlignCenter);
-    viewLayout->addWidget(imageBLabel, 1, 1, Qt::AlignCenter);
-    viewLayout->addWidget(imageCLabel, 1, 2, Qt::AlignCenter);
-
-    configmodel = new HarnessConfigModel(this);
-    if(configmodel->loadfromfile(YXENVIRONMENT::configDataPath))
-    {
-        qDebug()<<"loadfromfile success!";
+    hanessComboBox->addItem(tr("Please Choose"), -1);
+    QSettings *settings = new QSettings("fiber.ini", QSettings::IniFormat);
+    int size = settings->beginReadArray("Templates");
+    for (int i = 0; i < size; ++i) {
+        settings->setArrayIndex(i);
+        hanessComboBox->addItem(settings->value("Title").toString(), i);
     }
+    settings->endArray();
+    delete settings;
+    void(QComboBox::*fp)(int)=&QComboBox::currentIndexChanged;
+    connect(hanessComboBox, fp, this, &WorkMdi::changeharness);
 
-    captureAPushButton = new QPushButton(tr("&capture"));
-    connect(captureAPushButton, &QPushButton::clicked, this, &WorkMdi::captureA);
-    captureBPushButton = new QPushButton(tr("&capture"));
-    connect(captureBPushButton, &QPushButton::clicked, this, &WorkMdi::captureB);
-    captureCPushButton = new QPushButton(tr("&capture"));
-    connect(captureCPushButton, &QPushButton::clicked, this, &WorkMdi::captureC);
-    viewLayout->addWidget(captureAPushButton, 2, 0);
-    viewLayout->addWidget(captureBPushButton, 2, 1);
-    viewLayout->addWidget(captureCPushButton, 2, 2);
-    //iconAStatusLabel = new QLabel;
-    //viewLayout->addWidget(iconAStatusLabel, 2, 0);
 
-    aTabWidget = new QTabWidget;
-    aTabWidget->setTabPosition(QTabWidget::South);
-    imageADoneResultView = new ResultView(0, configmodel);
-    xmlATextEdit = new QTextEdit;
-    resultATreeView = new QTreeView;
-    aTabWidget->addTab(imageADoneResultView, tr("&pic"));
-    aTabWidget->addTab(resultATreeView, tr("&list"));
-    aTabWidget->addTab(xmlATextEdit, tr("&detail"));
+    statusResultView = new ResultView(0, configmodel);
+    statusResultView->setFixedSize(QSize(200,200));
+    statusResultView->hide();
 
-    bTabWidget = new QTabWidget;
-    bTabWidget->setTabPosition(QTabWidget::South);
-    imageBDoneResultView = new ResultView(1, configmodel);
-    xmlBTextEdit = new QTextEdit;
-    resultBTreeView = new QTreeView;
-    bTabWidget->addTab(imageBDoneResultView, tr("&pic"));
-    bTabWidget->addTab(resultBTreeView, tr("&list"));
-    bTabWidget->addTab(xmlBTextEdit, tr("&detail"));
+    configparammodel = new QStandardItemModel(7,2);
+    configparammodel->setHeaderData(0,Qt::Horizontal,tr("parameter"));
+    configparammodel->setHeaderData(1,Qt::Horizontal,tr("value"));
 
-    cTabWidget = new QTabWidget;
-    cTabWidget->setTabPosition(QTabWidget::South);
-    imageCDoneResultView = new ResultView(0, configmodel);
-    xmlCTextEdit = new QTextEdit;
-    resultCTreeView = new QTreeView;
-    cTabWidget->addTab(imageCDoneResultView, tr("&pic"));
-    cTabWidget->addTab(resultCTreeView, tr("&list"));
-    cTabWidget->addTab(xmlCTextEdit, tr("&detail"));
+    configparammodel->setItem(0,0,new QStandardItem(tr("Title")));
+    configparammodel->setItem(1,0,new QStandardItem(tr("Model")));
+    configparammodel->setItem(2,0,new QStandardItem(tr("TotalHoleCount")));
+    configparammodel->setItem(3,0,new QStandardItem(tr("LocationHoleCount")));
+    configparammodel->setItem(4,0,new QStandardItem(tr("Creator")));
+    configparammodel->setItem(5,0,new QStandardItem(tr("CreateDate")));
+    configparammodel->setItem(6,0,new QStandardItem(tr("IsGongTou")));
 
-    viewLayout->addWidget(aTabWidget, 3, 0);
-    viewLayout->addWidget(bTabWidget, 3, 1);
-    viewLayout->addWidget(cTabWidget, 3, 2);
+    configTableView = new QTableView;
+    configTableView->setModel(configparammodel);
+    configTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    configTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+
+    leftviewLayout->addWidget(hanessComboBox);
+    leftviewLayout->addWidget(statusResultView, 1, Qt::AlignHCenter);
+    leftviewLayout->addWidget(configTableView);
+    //leftviewLayout->addStretch();
+
+
+    QVBoxLayout *centerLayout = new QVBoxLayout(centerFrame);
+    centerLayout->setMargin(0);
+    QGridLayout *viewLayout = new QGridLayout;
+    //viewLayout->setSpacing(2);
+
+    standardimageLabel = new QLabel(tr("pls capture"));
+    standardimageLabel->setScaledContents(true);
+    standardimageLabel->setAlignment(Qt::AlignCenter);
+    standardimageLabel->setFixedSize(QSize(200,200));
+    testimageLabel = new QLabel(tr("pls capture"));
+    testimageLabel->setScaledContents(true);
+    testimageLabel->setAlignment(Qt::AlignCenter);
+    testimageLabel->setFixedSize(QSize(200,200));
+    statusResultView->hide();
+    testimageLabel->hide();
+
+    statuslogTextEdit = new QTextEdit(tr("Starting test..."));
+
+
+    resultmodel = new DefectResultModel;
+    resultTableView = new QTableView;
+    resultTableView->setModel(resultmodel);
+    resultTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    resultTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    viewLayout->addWidget(new QLabel(tr("template")), 0, 0, Qt::AlignCenter);
+    viewLayout->addWidget(new QLabel(tr("test")), 0, 1, Qt::AlignCenter);
+    viewLayout->addWidget(standardimageLabel, 1, 0);
+    viewLayout->addWidget(testimageLabel, 1, 1);
+
     viewLayout->setRowStretch(0,1);
     viewLayout->setRowStretch(1,4);
-    viewLayout->setRowStretch(2,1);
-    viewLayout->setRowStretch(3,5);
-    QFormLayout *controlLayout = new QFormLayout(rightFrame);
 
-    startPushButton = new QPushButton(tr("&start"));
-    connect(startPushButton, &QPushButton::clicked, this, &WorkMdi::startanalyze);
-    reportPushButton = new QPushButton(tr("&report"));
+    titleLabel = new QLabel(tr("Waiting..."));
+    titleLabel->setObjectName("titleLabel");
+    titleLabel->setProperty("status", "0");
+    titleLabel->setFixedHeight(40);
+    titleLabel->setAlignment(Qt::AlignCenter);
+    //titleLabel->setStyleSheet("background-color: lightblue;");
+    centerLayout->addWidget(titleLabel);
+    centerLayout->addLayout(viewLayout);
+    centerLayout->addWidget(resultTableView);
+    centerLayout->addWidget(statuslogTextEdit);
+
+
+    QVBoxLayout *controlLayout = new QVBoxLayout(rightFrame);
+
+    capturePushButton = new QPushButton(tr("&capture"));
+    connect(capturePushButton, &QPushButton::clicked, this, &WorkMdi::capture);
+    lightTestPushButton = new QPushButton(tr("&Light Test"));
+    connect(lightTestPushButton, &QPushButton::clicked, this, &WorkMdi::startanalyze);
+    defectTestPushButton = new QPushButton(tr("&Defect Test"));
+    connect(defectTestPushButton, &QPushButton::clicked, this, &WorkMdi::startanalyze);
+    autoTestPushButton = new QPushButton(tr("&Auto Test"));
+    connect(autoTestPushButton, &QPushButton::clicked, this, &WorkMdi::startanalyze);
+    reportPushButton = new QPushButton(tr("&Report Preview"));
     connect(reportPushButton, &QPushButton::clicked, this, &WorkMdi::generatereport);
-
-    controlLayout->addWidget(startPushButton);
+    controlLayout->addWidget(capturePushButton);
+    controlLayout->addWidget(lightTestPushButton);
+    controlLayout->addWidget(defectTestPushButton);
+    controlLayout->addWidget(autoTestPushButton);
     controlLayout->addWidget(reportPushButton);
+    controlLayout->addStretch();
     controlLayout->setSpacing(10);
 
     mainLayout->addWidget(leftFrame);
-    //mainLayout->addStretch(20);
+    mainLayout->addWidget(centerFrame);
     mainLayout->addWidget(rightFrame);
-    mainLayout->setStretch(0,6);
-    mainLayout->setStretch(1,1);
-    imgFileNameA = QString("");
-    imgFileNameB = QString("");
-    imgFileNameC = QString("");
+    mainLayout->setStretch(0,1);
+    mainLayout->setStretch(1,3);
+    mainLayout->setStretch(2,1);
+    imgFileName = QString("");
 }
 
-void WorkMdi::captureA()
+void WorkMdi::capture()
 {
-    //QImage image;
-    //image.load(":/images/male-test.png");
+    if(hanessComboBox->currentIndex() == 0)
+    {
+        QMessageBox::warning(this, tr("Warning"), tr("please choose harness type first."));
+        return;
+    }
     QPixmap *p = new QPixmap(":/images/male-test.png");
-    imageALabel->setPixmap(p->scaled(imageALabel->size(), Qt::KeepAspectRatio));
+    testimageLabel->setPixmap(p->scaled(testimageLabel->size(), Qt::KeepAspectRatio));
     QString tempImagePath = QDir::currentPath() + "/male.png";
     if(p->save(tempImagePath, "BMP", 1))
     {
         imgFileNameA = tempImagePath;
     }
-    //imageBLabel->setPixmap(QPixmap::fromImage( imageFemale.scaled(imageBLabel->size(), Qt::KeepAspectRatio)));
-}
-
-void WorkMdi::captureB()
-{
-    QPixmap *p = new QPixmap(":/images/female-test.bmp");
-    imageBLabel->setPixmap(p->scaled(imageBLabel->size(), Qt::KeepAspectRatio));
-    QString tempImagePath = QDir::currentPath() + "/female.bmp";
-    if(p->save(tempImagePath, "BMP", 1))
-    {
-        imgFileNameB = tempImagePath;
-    }
-}
-
-void WorkMdi::captureC()
-{
-    QPixmap *p = new QPixmap(":/images/male-test.png");
-    imageCLabel->setPixmap(p->scaled(imageCLabel->size(), Qt::KeepAspectRatio));
-    QString tempImagePath = QDir::currentPath() + "/male.png";
-    if(p->save(tempImagePath, "BMP", 1))
-    {
-        imgFileNameC = tempImagePath;
-    }
 }
 
 void WorkMdi::startanalyze()
 {
+    if(hanessComboBox->currentIndex() == 0)
+    {
+        QMessageBox::warning(this, tr("Warning"), tr("please choose harness type first."));
+        return;
+    }
     char *charConfigName;
     char *charImageA;
-    char *charImageB;
-    char *charImageC;
-    QByteArray ba0 = YXENVIRONMENT::configDataPath.toLocal8Bit();
+    QByteArray ba0 = configmodel->getconfigdatafilepath().toLocal8Bit();
     charConfigName = ba0.data();
-    QByteArray ba1 = imgFileNameA.toLocal8Bit();
+    QByteArray ba1 = imgFileName.toLocal8Bit();
     charImageA = ba1.data();
-    QByteArray ba2 = imgFileNameB.toLocal8Bit();
-    charImageB = ba2.data();
-    QByteArray ba3 = imgFileNameC.toLocal8Bit();
-    charImageC = ba3.data();
     try
     {
-        qDebug()<<"charImageA:"<<charImageA;
-        qDebug()<<"charImageB:"<<charImageB;
-        qDebug()<<"charImageC:"<<charImageC;
-        qDebug()<<"charConfigName:"<<charConfigName;
-        YXENVIRONMENT::detectFun(charImageA, charImageC, charConfigName, charImageB);
+        YXENVIRONMENT::detectFun(charImageA, charImageA, charConfigName, NULL);
         loadresult();
     }
     catch(...)
     {
-        qDebug()<<"exception";
+        appendlog("exception");
     }
 
-    QMessageBox::about(this, tr("Analyze"),tr("finished"));
+    appendlog(tr("Analyze finished"));
 }
 
 void WorkMdi::generatereport()
@@ -205,73 +195,92 @@ void WorkMdi::generatereport()
 
 void WorkMdi::loadresult()
 {
-    if(!YXENVIRONMENT::detectpath_gong.isNull()) {
-        QFile file(YXENVIRONMENT::detectpath_gong);
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            xmlATextEdit->setText(tr("Cannot open result file:\n%1").arg(YXENVIRONMENT::detectpath_gong));
+    bool isloadsuccess = resultmodel->loadresult(true);
+    if(isloadsuccess)
+    {
+        appendlog(tr("result table load finished."));
+        statusResultView->setresult(resultmodel);
+        appendlog(tr("status view load finished."));
+
+        int status = resultmodel->status();
+        titleLabel->setProperty("status", QString::number(status));
+        titleLabel->style()->unpolish(titleLabel);
+        titleLabel->style()->polish(titleLabel);
+        if(status == 0)
+        {
+            titleLabel->setText(tr("Waiting..."));
+        }
+        else if(status == 1)
+        {
+            titleLabel->setText(tr("Success!"));
         }
         else
         {
-            QTextStream in(&file);
-            QString xml = in.readAll();
-            xmlATextEdit->setText(xml);
 
-
-            QStringList headers;
-            headers << tr("Title") << tr("Description");
-
-            DefectResultModel *model = new DefectResultModel(headers, xml);
-            file.close();
-
-            resultATreeView->setModel(model);
-            resultATreeView->expandAll();
-            for (int column = 0; column < model->columnCount(); ++column)
-                resultATreeView->resizeColumnToContents(column);
-            imageADoneResultView->setresult(model);
-            file.close();
+            titleLabel->setText(tr("Failed!"));
         }
-
-    } else {
-        xmlATextEdit->setText(tr("No result file generated."));
     }
-
-    if(!YXENVIRONMENT::detectpath_mu.isNull()) {
-        QFile file(YXENVIRONMENT::detectpath_mu);
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            xmlBTextEdit->setText(tr("Cannot open result file:\n%1").arg(YXENVIRONMENT::detectpath_mu));
-        }
-        else
-        {
-            QTextStream in(&file);
-            QString xml = in.readAll();
-            xmlBTextEdit->setText(xml);
-
-            file.close();
-        }
-
-    } else {
-        xmlBTextEdit->setText(tr("No result file generated."));
-    }
-    if(!YXENVIRONMENT::lightpath.isNull()) {
-        QFile file(YXENVIRONMENT::lightpath);
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            xmlCTextEdit->setText(tr("Cannot open result file:\n%1").arg(YXENVIRONMENT::lightpath));
-        }
-        else
-        {
-            QTextStream in(&file);
-            QString xml = in.readAll();
-            xmlCTextEdit->setText(xml);
-            file.close();
-        }
-    } else {
-        xmlCTextEdit->setText(tr("No result file generated."));
+    else {
+        appendlog(tr("No result file generated."));
     }
 }
 
-void WorkMdi::changeharness()
+void WorkMdi::changeharness(int index)
 {
-    int index = hanessComboBox->currentIndex();
-    Q_UNUSED(index);
+    if(index != 0)
+    {
+        appendlog(tr("You have choosen the %1").arg(hanessComboBox->currentText()));
 
+        QTextCodec *codec = QTextCodec::codecForName("utf-8");
+        QSettings *settings = new QSettings("fiber.ini", QSettings::IniFormat);
+        settings->setIniCodec(codec);
+        settings->beginWriteArray("Templates");
+        settings->setArrayIndex(index - 1);
+        QString configPath = settings->value("ConfigDataPath").toString();
+        QString picPath = settings->value("BasePicPath").toString();
+
+        if(configmodel->loadfromfile(configPath))
+        {
+            statusResultView->show();
+            QPixmap p(picPath) ;
+            standardimageLabel->setPixmap(p.scaled(standardimageLabel->size(), Qt::KeepAspectRatio));
+            standardimageLabel->show();
+            testimageLabel->show();
+            configparammodel->setItem(0,1,new QStandardItem(settings->value("Title").toString()));
+            configparammodel->setItem(1,1,new QStandardItem(settings->value("Model").toString()));
+            configparammodel->setItem(2,1,new QStandardItem(settings->value("TotalHoleCount").toString()));
+            configparammodel->setItem(3,1,new QStandardItem(settings->value("LocationHoleCount").toString()));
+            configparammodel->setItem(4,1,new QStandardItem(settings->value("Creator").toString()));
+            configparammodel->setItem(5,1,new QStandardItem(settings->value("CreateDate").toDateTime().toString("yyyy-MM-dd hh:mm:ss")));
+            configparammodel->setItem(6,1,new QStandardItem(settings->value("IsGongTou").toBool() ? tr("Male") : tr("Female")));
+
+        }
+        settings->endArray();
+        delete settings;
+    }
+    else
+    {
+        statusResultView->hide();
+        resultmodel->clear();
+        testimageLabel->hide();
+        standardimageLabel->hide();
+        configparammodel->setItem(0,1,new QStandardItem("");
+        configparammodel->setItem(1,1,new QStandardItem("");
+        configparammodel->setItem(2,1,new QStandardItem("");
+        configparammodel->setItem(3,1,new QStandardItem("");
+        configparammodel->setItem(4,1,new QStandardItem("");
+        configparammodel->setItem(5,1,new QStandardItem("");
+        configparammodel->setItem(6,1,new QStandardItem("");
+    }
+
+}
+
+void WorkMdi::appendlog(const QString &text)
+{
+    QStringList log;
+    log << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss") << text;
+    statuslogTextEdit->append(log.join(":"));
+    //statuslogTextEdit->moveCursor(QTextCursor::Start) ;
+    //statuslogTextEdit->ensureCursorVisible();
+    statuslogTextEdit->verticalScrollBar()->setValue(statuslogTextEdit->verticalScrollBar()->maximum());
 }

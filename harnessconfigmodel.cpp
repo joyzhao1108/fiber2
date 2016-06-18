@@ -17,7 +17,7 @@ bool HarnessConfigModel::loadfromfile(const QString &filename)
 {
     //Q_UNUSED(filename);
     qDebug()<<"loadfromfile:"<<filename;
-    //QList<HarnessConfig> xxconfigs;;
+    m_configFiePath = filename;
     if(!filename.isNull() && !filename.isEmpty()) {
         QFile file(filename);
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -164,18 +164,26 @@ int HarnessConfigModel::inradius(int flag) const
     return radius;
 }
 
-void HarnessConfigModel::seterror(int flag, int order)
+void HarnessConfigModel::seterror(int flag, int order, bool error)
 {
+    beginResetModel();
     if(flag==0)
     {
-        m_configs[order - 1].seterror();
+
+        m_configs[order - 1].seterror(error);
     }
     else
     {
-        m_configs[gongtouconfig[8] + order - 1].seterror();
+        m_configs[gongtouconfig[8] + order - 1].seterror(error);
     }
+    endResetModel();
 }
 
+QString HarnessConfigModel::getconfigdatafilepath() const
+{
+    return m_configFiePath;
+
+}
 QHash<int, QByteArray> HarnessConfigModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
@@ -213,4 +221,9 @@ bool HarnessConfig::error() const
 void HarnessConfig::seterror(bool error)
 {
     m_error = error;
+}
+
+int HarnessConfig::order() const
+{
+    return m_order;
 }

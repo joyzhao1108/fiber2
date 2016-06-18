@@ -1,242 +1,199 @@
-
+#include "yxenvironment.h"
+#include "defectresultmodel.h"
 #include <QtWidgets>
 #include <QDomDocument>
-#include "defectresultitem.h"
-#include "defectresultmodel.h"
-
-//! [0]
-DefectResultModel::DefectResultModel(const QStringList &headers, const QString &data, QObject *parent)
-    : QAbstractItemModel(parent)
+DefectResultModel::DefectResultModel(QObject *parent)
+    : QAbstractTableModel(parent)
 {
-    QVector<QVariant> rootData;
-    foreach (QString header, headers)
-        rootData << header;
 
-    rootItem = new DefectResultItem(rootData);
-    QDomDocument doc;
-    if(!doc.setContent(data))
-    {
-        qDebug() << "setcontent for do error";
-    }
-    setupModelData(doc, rootItem);
-}
-//! [0]
-
-//! [1]
-DefectResultModel::~DefectResultModel()
-{
-    delete rootItem;
+    headtitles << tr("Touch Point")
+               << tr("IsPass")
+               << tr("Defect Count")
+               << tr("Light Rank")+ tr("(db)");
 }
 
-//! [1]
-
-//! [2]
-int DefectResultModel::columnCount(const QModelIndex & /* parent */) const
+int DefectResultModel::rowCount(const QModelIndex &) const
 {
-    return rootItem->columnCount();
+    return m_configs.size();
 }
-//! [2]
+
+int DefectResultModel::columnCount(const QModelIndex &) const
+{
+    return headtitles.size();
+}
+
 
 QVariant DefectResultModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
         return QVariant();
 
-    if (role != Qt::DisplayRole && role != Qt::EditRole)
-        return QVariant();
-
-    DefectResultItem *item = getItem(index);
-
-    return item->data(index.column());
-}
-
-//! [3]
-Qt::ItemFlags DefectResultModel::flags(const QModelIndex &index) const
-{
-    if (!index.isValid())
-        return 0;
-
-    return Qt::ItemIsEditable | QAbstractItemModel::flags(index);
-}
-//! [3]
-
-//! [4]
-DefectResultItem *DefectResultModel::getItem(const QModelIndex &index) const
-{
-    if (index.isValid()) {
-        DefectResultItem *item = static_cast<DefectResultItem*>(index.internalPointer());
-        if (item)
-            return item;
+    if (role == Qt::TextAlignmentRole) {
+        return int(Qt::AlignCenter);
+    } else if (role == Qt::DisplayRole  || role == Qt::EditRole) {
+        DefectResultItem *item = m_configs.at(index.row());
+        if(index.column() == 1 && role == Qt::DisplayRole)
+        {
+            bool pass = item->data(1).toBool();
+            if(pass)
+            {
+                return QVariant(tr("Pass"));
+            }
+            else
+            {
+                return QVariant(tr("Not Pass"));
+            }
+        }
+        return item->data(index.column());
     }
-    return rootItem;
+    if(index.column() == 0)
+    {
+        if(role == Qt::DecorationRole)
+        {
+            DefectResultItem *item = m_configs.at(index.row());
+            bool pass = item->data(1).toBool();
+            if(pass)
+            {
+                return QIcon(":/icons/greenlight.ico");
+            }
+            else
+            {
+                return QIcon(":/icons/redlight.ico");
+            }
+        }
+    }
+    return QVariant();
 }
-//! [4]
+
 
 QVariant DefectResultModel::headerData(int section, Qt::Orientation orientation,
                                        int role) const
 {
-    if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-        return rootItem->data(section);
-
-    return QVariant();
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
+        return headtitles.value(section);
+    }
+    return QAbstractTableModel::headerData(section, orientation, role);
 }
 
-//! [5]
-QModelIndex DefectResultModel::index(int row, int column, const QModelIndex &parent) const
+
+
+bool DefectResultModel::loadresult(const bool isGongtou)
 {
-    if (parent.isValid() && parent.column() != 0)
-        return QModelIndex();
-    //! [5]
-
-    //! [6]
-    DefectResultItem *parentItem = getItem(parent);
-
-    DefectResultItem *childItem = parentItem->child(row);
-    if (childItem)
-        return createIndex(row, column, childItem);
+    bool callback = false;
+    QString configfile;
+    if(isGongtou)
+    {
+        configfile = YXENVIRONMENT::detectpath_gong;
+    }
     else
-        return QModelIndex();
-}
-//! [6]
-
-bool DefectResultModel::insertColumns(int position, int columns, const QModelIndex &parent)
-{
-    bool success;
-
-    beginInsertColumns(parent, position, position + columns - 1);
-    success = rootItem->insertColumns(position, columns);
-    endInsertColumns();
-
-    return success;
-}
-
-bool DefectResultModel::insertRows(int position, int rows, const QModelIndex &parent)
-{
-    DefectResultItem *parentItem = getItem(parent);
-    bool success;
-
-    beginInsertRows(parent, position, position + rows - 1);
-    success = parentItem->insertChildren(position, rows, rootItem->columnCount());
-    endInsertRows();
-
-    return success;
-}
-
-//! [7]
-QModelIndex DefectResultModel::parent(const QModelIndex &index) const
-{
-    if (!index.isValid())
-        return QModelIndex();
-
-    DefectResultItem *childItem = getItem(index);
-    DefectResultItem *parentItem = childItem->parent();
-
-    if (parentItem == rootItem)
-        return QModelIndex();
-
-    return createIndex(parentItem->childNumber(), 0, parentItem);
-}
-//! [7]
-
-bool DefectResultModel::removeColumns(int position, int columns, const QModelIndex &parent)
-{
-    bool success;
-
-    beginRemoveColumns(parent, position, position + columns - 1);
-    success = rootItem->removeColumns(position, columns);
-    endRemoveColumns();
-
-    if (rootItem->columnCount() == 0)
-        removeRows(0, rowCount());
-
-    return success;
-}
-
-bool DefectResultModel::removeRows(int position, int rows, const QModelIndex &parent)
-{
-    DefectResultItem *parentItem = getItem(parent);
-    bool success = true;
-
-    beginRemoveRows(parent, position, position + rows - 1);
-    success = parentItem->removeChildren(position, rows);
-    endRemoveRows();
-
-    return success;
-}
-
-//! [8]
-int DefectResultModel::rowCount(const QModelIndex &parent) const
-{
-    DefectResultItem *parentItem = getItem(parent);
-
-    return parentItem->childCount();
-}
-//! [8]
-
-bool DefectResultModel::setData(const QModelIndex &index, const QVariant &value, int role)
-{
-    if (role != Qt::EditRole)
-        return false;
-
-    DefectResultItem *item = getItem(index);
-    bool result = item->setData(index.column(), value);
-
-    if (result)
-        emit dataChanged(index, index);
-
-    return result;
-}
-
-bool DefectResultModel::setHeaderData(int section, Qt::Orientation orientation,
-                                      const QVariant &value, int role)
-{
-    if (role != Qt::EditRole || orientation != Qt::Horizontal)
-        return false;
-
-    bool result = rootItem->setData(section, value);
-
-    if (result)
-        emit headerDataChanged(orientation, section, section);
-
-    return result;
-}
-
-void DefectResultModel::setupModelData(const QDomDocument &doc, DefectResultItem *parent)
-{
-    QDomNode node;
-    QDomNode childnode;
-    int seqno;
-    QString title;
-    QString description;
-    QVector<QVariant> columnData;
-    QDomNodeList list = doc.elementsByTagName("detectDefect");
-    for(int i=0;i<list.count();i++){
-        node=list.at(i);
-        //qDebug()<<"node.firstChild().toElement().text():"<<node.firstChild().toElement().text();
-        seqno = node.firstChild().toElement().text().toInt();
-        //qDebug()<<"seqno:"<<seqno;
-
-        title = "hup_" + QString::number(seqno + 1);
-        description = "";
-        columnData.clear();
-        columnData << title << description;
-        parent->insertChildren(parent->childCount(), 1, rootItem->columnCount());
-        DefectResultItem *thisitem = parent->child(parent->childCount() - 1);
-        for (int column = 0; column < columnData.size(); ++column)
-            thisitem->setData(column, columnData[column]);
-
-        QDomNodeList childs = node.childNodes();
-        for(int j=1;j<childs.count();j++){
-            childnode=childs.at(j);
-            title = "rad_" + QString::number(j);
-            description = childnode.toElement().text();
-            columnData.clear();
-            columnData << title << description;
-            thisitem->insertChildren(thisitem->childCount(), 1, rootItem->columnCount());
-            DefectResultItem *raditem = thisitem->child(thisitem->childCount() - 1);
-            for (int column = 0; column < columnData.size(); ++column)
-                raditem->setData(column, columnData[column]);
+    {
+        configfile = YXENVIRONMENT::detectpath_mu;
+    }
+    if(!configfile.isNull()) {
+        QFile file(configfile);
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QTextStream in(&file);
+            QString xml = in.readAll();
+            file.close();
+            callback = setupModelData(xml);
         }
     }
+    return callback;
+}
 
+void DefectResultModel::clear()
+{
+    beginResetModel();
+    m_configs.clear();
+    endResetModel();
+}
+
+int DefectResultModel::status() const
+{
+    return m_status;
+}
+
+bool DefectResultModel::setupModelData(const QString &xml)
+{
+    bool callback = false;
+    m_status = 1;
+    QDomDocument doc;
+    if(doc.setContent(xml))
+    {
+        beginResetModel();
+        QDomNode node;
+        QDomNode childnode;
+        int seqno;
+        QString title;
+        bool pass;
+        int defectcount;
+        QString lightrank = "200db";
+        QVector<QVariant> columnData;
+        QDomNodeList list = doc.elementsByTagName("detectDefect");
+        m_configs.clear();
+        for(int i=0;i<list.count();i++){
+            node=list.at(i);
+            //qDebug()<<"node.firstChild().toElement().text():"<<node.firstChild().toElement().text();
+            seqno = node.firstChild().toElement().text().toInt();
+            title = "hup_" + QString::number(seqno + 1);
+
+            QDomNodeList childs = node.childNodes();
+            defectcount = childs.count();
+            pass = (defectcount < 4);
+            if(!pass)
+            {
+                m_status = -1;
+            }
+            //            for(int j=1;j<childs.count();j++){
+            //                childnode=childs.at(j);
+            //                title = "rad_" + QString::number(j);
+            //                description = childnode.toElement().text();
+            //                columnData.clear();
+            //                columnData << title << description;
+            //                thisitem->insertChildren(thisitem->childCount(), 1, rootItem->columnCount());
+            //                DefectResultItem *raditem = thisitem->child(thisitem->childCount() - 1);
+            //                for (int column = 0; column < columnData.size(); ++column)
+            //                    raditem->setData(column, columnData[column]);
+            //            }
+            columnData.clear();
+            columnData << title << pass << defectcount << lightrank;
+
+            DefectResultItem *resultitem = new DefectResultItem(seqno, columnData);
+            //QList<DefectResultItem*> m_ccitems;
+            m_configs << resultitem;
+            callback = true;
+        }
+        endResetModel();
+    }
+    return callback;
+
+}
+
+void DefectResultModel::refrushModel()
+{
+
+}
+DefectResultItem::DefectResultItem(int index, const QVector<QVariant> &data)
+{
+    itemData = data;
+    m_index = index;
+}
+
+QVariant DefectResultItem::data(int column) const
+{
+    return itemData.value(column);
+}
+
+bool DefectResultItem::setData(int column, const QVariant &value)
+{
+    if (column < 0 || column >= itemData.size())
+        return false;
+
+    itemData[column] = value;
+    return true;
+}
+
+int DefectResultItem::index() const
+{
+    return m_index;
 }

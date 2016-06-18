@@ -24,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent) :
     mdiArea->setTabShape(QTabWidget::Triangular);
     mdiArea->setOption(QMdiArea::DontMaximizeSubWindowOnActivation, false);
     createActions();
+
+    createNew();
 }
 
 MainWindow::~MainWindow()

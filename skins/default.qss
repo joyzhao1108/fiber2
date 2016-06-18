@@ -1,0 +1,68 @@
+/* === Shared === */
+QStackedWidget, QLabel, QPushButton, QRadioButton, QCheckBox,
+QGroupBox, QStatusBar, QToolButton, QComboBox, QDialog {
+    background-color: #ffffff;
+    color: darkblue;
+    font-family: "Segoe UI";
+}
+
+/* === QWidget === */
+QWidget:window {
+    background: #ffffff;
+    color: darkblue;
+    font-family: "Segoe UI";
+}
+/* === customization === */
+QFrame{
+    background: white;
+}
+/* === QPushButton === */
+QPushButton {
+    border: 1px solid #333333;
+    padding: 4px;
+    min-width: 65px;
+    min-height: 12px;
+}
+
+QPushButton:hover {
+    background-color: #333333;
+    border-color: #444444;
+}
+
+QPushButton:pressed {
+    background-color: #eeeeee;
+    border-color: #333333;
+    color: brown;
+}
+
+QPushButton:disabled {
+    color: #333333;
+}
+QLabel#titleLabel[status="0"]{
+     background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+                                 stop: 0 rgb(248, 247, 250) ,stop: 0.5  rgb(7, 3, 30), stop: 1.0 rgb(248, 247, 250)  );
+     border-style: outset;
+     border-width: 1px;
+     border-style: solid;
+     border-color: rgb(255, 170, 0);
+     color:white;
+}
+
+QLabel#titleLabel[status="1"]{
+     background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+                                 stop: 0 rgb(248, 247, 250) ,stop: 0.5 rgb(79, 207, 54), stop: 1.0 rgb(248, 247, 250)  );
+     border-style: outset;
+     border-width: 1px;
+     border-style: solid;
+     border-color: rgb(255, 170, 0);
+     color:white;
+}
+QLabel#titleLabel[status="-1"]{
+     background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+                                 stop: 0 rgb(248, 247, 250) ,stop: 0.5  rgb(207, 54, 73), stop: 1.0 rgb(248, 247, 250)  );
+     border-style: outset;
+     border-width: 1px;
+     border-style: solid;
+     border-color: rgb(255, 170, 0);
+     color:white;
+}

@@ -23,10 +23,9 @@ SOURCES += main.cpp\
     adminsettingdialog.cpp \
     adminsettingpage.cpp \
     defectresultmodel.cpp \
-    defectresultitem.cpp \
     sysuser.cpp \
     usermanagedialog.cpp \
-    studytemplate.cpp
+    templatemodel.cpp
 
 HEADERS  += mainwindow.h \
     workmdi.h \
@@ -38,10 +37,9 @@ HEADERS  += mainwindow.h \
     adminsettingdialog.h \
     adminsettingpage.h \
     defectresultmodel.h \
-    defectresultitem.h \
     sysuser.h \
     usermanagedialog.h \
-    studytemplate.h
+    templatemodel.h
 
 FORMS    += mainwindow.ui
 

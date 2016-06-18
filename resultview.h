@@ -4,7 +4,7 @@
 #include <QPainter>
 #include "harnessconfigmodel.h"
 #include "defectresultmodel.h"
-class ResultView : public QWidget
+class ResultView : public QLabel
 {
     Q_OBJECT
 

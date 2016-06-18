@@ -15,6 +15,7 @@ public:
     bool location() const;
     bool error() const;
     void seterror(bool error = true);
+    int order() const;
 
 private:
     QString m_symbol;
@@ -50,13 +51,15 @@ public:
     QList<HarnessConfig> configs(int flag) const;
     int maxradius(int flag) const;
     int inradius(int flag) const;
-    void seterror(int flag, int order);
+    void seterror(int flag, int order, bool error = true);
+    QString getconfigdatafilepath() const;
 protected:
     QHash<int, QByteArray> roleNames() const;
 private:
     QList<HarnessConfig> m_configs;
     int m_gongtouradius;
     int m_mutouradius;
+    QString m_configFiePath;
 };
 
 #endif // HARNESSCONFIGDATA_H

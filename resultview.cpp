@@ -1,9 +1,9 @@
 #include "resultview.h"
 
 ResultView::ResultView(int flag, HarnessConfigModel *model, QWidget *parent) :
-    QWidget(parent),m_flag(flag),m_model(model)
+    QLabel(parent),m_flag(flag),m_model(model)
 {
-    resize(200,200);
+    resize(100,100);
     //setStyleSheet("background-color: red;");
 }
 
@@ -11,16 +11,15 @@ void ResultView::setresult(const DefectResultModel *resultmodel)
 {
 
     QList<HarnessConfig> list = m_model->configs(m_flag);
+    //qDebug()<< "list.size():" << list.size();
     for(int i= 0;i< list.size(); i++)
     {
-        QModelIndex index = resultmodel->index(i,0);
-        if(resultmodel->rowCount(index) > 8)
-        {
-            int order = i + 1;
-            m_model->seterror(m_flag, order);
-        }
+        QModelIndex index = resultmodel->index(i,1);
+        bool pass = resultmodel->data(index,Qt::EditRole).toBool();
+        int order = i + 1;
+         m_model->seterror(m_flag, order, !pass);
     }
-    //emit repaint();
+    emit update();
 }
 
 void ResultView::paintEvent(QPaintEvent *)
@@ -35,8 +34,11 @@ void ResultView::paintEvent(QPaintEvent *)
     QPoint point(0,0);
     paint->setRenderHint(QPainter::Antialiasing, true);
     QPalette palette;
+    paint->setBrush(QBrush(Qt::darkGray,Qt::SolidPattern));
+    paint->drawEllipse(point,radiusout+5,radiusout+5);
     paint->setBrush(QBrush(Qt::white,Qt::SolidPattern));
     paint->drawEllipse(point,radiusout,radiusout);
+
     //paint->setBrush(QBrush(palette.brush(QPalette::Background)));
 
     //qDebug()<<"strart paint harness:";
@@ -56,6 +58,7 @@ void ResultView::paintEvent(QPaintEvent *)
         }
         else
         {
+            //qDebug()<<"order:"<<config.order();
             paint->setBrush(QBrush(Qt::green,Qt::SolidPattern));
         }
         paint->drawEllipse(config.point(),radiusin,radiusin);

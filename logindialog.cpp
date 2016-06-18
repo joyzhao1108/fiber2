@@ -31,10 +31,10 @@ LoginDialog::LoginDialog(bool admin, QWidget *parent) :
     }
     QLabel *lbl1 = new QLabel(QWidget::tr("UserName:"));
     nameLineEdit = new QLineEdit;
-    nameLineEdit->setStyleSheet("QLineEdit{font: italic large \"Times New Roman\";color:rgb(55,100,255);border:1px solid rgb(155,200,33);border-radius:5px;selection-color:pink}");
+    //nameLineEdit->setStyleSheet("QLineEdit{font: italic large \"Times New Roman\";color:rgb(55,100,255);border:1px solid rgb(155,200,33);border-radius:5px;selection-color:pink}");
     QLabel *lbl2 = new QLabel(QWidget::tr("Password:"));
     pwdLineEdit = new QLineEdit;
-    pwdLineEdit->setStyleSheet("QLineEdit{font: italic large \"Times New Roman\";color:rgb(55,100,255);border:1px solid rgb(155,200,33);border-radius:5px;selection-color:pink}");
+    //pwdLineEdit->setStyleSheet("QLineEdit{font: italic large \"Times New Roman\";color:rgb(55,100,255);border:1px solid rgb(155,200,33);border-radius:5px;selection-color:pink}");
     pwdLineEdit->setEchoMode(QLineEdit::Password);
     okButton = new QPushButton(tr("&Login"));
     cancelButton = new QPushButton(tr("&Cancel"));

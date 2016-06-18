@@ -3,61 +3,52 @@
 #include <resultview.h>
 #include <QtWidgets>
 #include "harnessconfigmodel.h"
+#include "templatemodel.h"
 class WorkMdi : public QMdiSubWindow
 {
     Q_OBJECT
-
 public:
     explicit WorkMdi(QWidget *parent = 0);
 
 private:
-    QString imgFileNameA;
-    QString imgFileNameB;
-    QString imgFileNameC;
+    QString imgFileName;
 
 
     QFrame * leftFrame;
     QFrame * centerFrame;
     QFrame * rightFrame;
-    QPushButton *captureAPushButton;//公头拍摄按钮
-    QPushButton *captureBPushButton;//母头拍摄按钮
-    QPushButton *captureCPushButton;//光强拍摄按钮(公头)
-    QPushButton *startPushButton;//启动分析按钮
+    QPushButton *capturePushButton;//拍摄按钮
+
+    QPushButton *lightTestPushButton;
+    QPushButton *defectTestPushButton;
+    QPushButton *autoTestPushButton;
+
     QPushButton *reportPushButton;//导出报告按钮
 
     QLabel *titleLabel;//标题栏
-
     QLabel *standardimageLabel;
     QLabel *testimageLabel;
-
     QLabel *iconStatusLabel;
-
-//    QTabWidget *aTabWidget;
-//    QTabWidget *bTabWidget;
-//    QTabWidget *cTabWidget;
-
-    ResultView *stausResultView;
-
-//    QTextEdit *xmlATextEdit;
-//    QTextEdit *xmlBTextEdit;
-//    QTextEdit *xmlCTextEdit;
-
+    QTextEdit *statuslogTextEdit;
+    ResultView *statusResultView;
     QTableView *resultTableView;
+    QTableView *configTableView;
 
     QComboBox *hanessComboBox;//线束类型
 
-    void captureA();
-    void captureB();
-    void captureC();
+    void capture();
 
     void startanalyze();
     void generatereport();
     void loadresult();
-
-    void changeharness();
-
+    void changeharness(int index);
     QPainter *painter;
     HarnessConfigModel *configmodel;
+    DefectResultModel *resultmodel;
+    TemplateModel *templatemodel;
+    QStandardItemModel *configparammodel;
+
+    void appendlog(const QString &text);
 
 };
 

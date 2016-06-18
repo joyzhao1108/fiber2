@@ -1,6 +1,5 @@
 #include "adminsettingdialog.h"
 #include "adminsettingpage.h"
-#include "studytemplate.h"
 AdminSettingDialog::AdminSettingDialog(QWidget *parent) :
     QDialog(parent)
 {

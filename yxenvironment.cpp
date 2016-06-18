@@ -7,7 +7,6 @@ DectectFunction YXENVIRONMENT::detectFun = NULL;
 QString YXENVIRONMENT::detectpath_gong = NULL;
 QString YXENVIRONMENT::detectpath_mu = NULL;
 QString YXENVIRONMENT::lightpath = NULL;
-QString YXENVIRONMENT::configDataPath = NULL;
 SysUser YXENVIRONMENT::currentuser = NULL;
 YXENVIRONMENT::YXENVIRONMENT()
 {
@@ -22,20 +21,41 @@ void YXENVIRONMENT::load()
     QSettings *settings = new QSettings("fiber.ini", QSettings::IniFormat);
     settings->setIniCodec(codec);
     settings->beginWriteArray("Templates");
-    for (int i = 0; i < 5; ++i) {
+    QString templatePath = QString("%1/template/%2/").arg(QDir::currentPath()).arg(1);
 
-        settings->setArrayIndex(i);
-        settings->setValue("ID", QDateTime::currentDateTime().toString("TyyyyMMddhhmmss"));
-        settings->setValue("Title", QString("线束1-%1").arg(i));
-        settings->setValue("Model", "F12-R45");
-        settings->setValue("TotalHoleCount", 34);
-        settings->setValue("LocationHoleCount", 2);
-        settings->setValue("Creator", "admin");
-        settings->setValue("CreateDate", QDateTime::currentDateTime());
-    }
+    QDir::current().mkpath(QString("%1/template/%2/").arg(QDir::currentPath()).arg(1));
 
+    settings->setArrayIndex(0);
+    settings->setValue("ID", QDateTime::currentDateTime().toString("TyyyyMMddhhmmss"));
+    settings->setValue("Title", QString("线束- %1 - 公头").arg(1));
+    settings->setValue("Model", "F12-R45");
+    settings->setValue("TotalHoleCount", 34);
+    settings->setValue("LocationHoleCount", 2);
+    settings->setValue("Creator", "admin");
+    settings->setValue("CreateDate", QDateTime::currentDateTime());
+    settings->setValue("IsGongTou", true);
+    settings->setValue("ConfigDataPath", templatePath + "gpldata01.txt");
+    settings->setValue("BasePicPath", templatePath + "male.png");
+    QPixmap(":/images/male-test.png").save(templatePath + "male.png");
+
+    settings->setArrayIndex(1);
+    settings->setValue("ID", QDateTime::currentDateTime().toString("TyyyyMMddhhmmss"));
+    settings->setValue("Title", QString("线束- %1 - 母头").arg(1));
+    settings->setValue("Model", "F12-R45");
+    settings->setValue("TotalHoleCount", 34);
+    settings->setValue("LocationHoleCount", 2);
+    settings->setValue("Creator", "admin");
+    settings->setValue("CreateDate", QDateTime::currentDateTime());
+    settings->setValue("IsGongTou", false);
+    settings->setValue("ConfigDataPath", templatePath + "gpldata01.txt");
+    settings->setValue("BasePicPath", templatePath + "female.bmp");
+    QPixmap(":/images/female-test.bmp").save(templatePath + "female.bmp");
     settings->endArray();
     delete settings;
+
+    QFile::copy(":/configs/gpldata01.txt", templatePath + "gpldata01.txt");
+    QFile foo(templatePath + "gpldata01.txt");
+    foo.setPermissions(QFile::WriteUser);
 }
 
 void YXENVIRONMENT::loadlibs()
@@ -69,19 +89,12 @@ void YXENVIRONMENT::loadlibs()
 
 void YXENVIRONMENT::loadvariables()
 {
-    YXENVIRONMENT::configDataPath = QDir::currentPath() + "/gpldata01.txt";
     YXENVIRONMENT::detectpath_gong = QDir::currentPath() + "/DetectDefect_gongtou.xml";
     YXENVIRONMENT::detectpath_mu = QDir::currentPath() + "/DetectDefect_mutou.xml";
     YXENVIRONMENT::lightpath = QDir::currentPath() + "/lightRank_gongtou.xml";
 
     qDebug()<<QDir::currentPath()<<endl;
-    if(QFile::exists(configDataPath))
-    {
-        if(QFile::remove(configDataPath))
-        {
-            qDebug()<<"remove"<<configDataPath<<endl;
-        }
-    }
+
 
     if(QFile::exists(detectpath_gong))
     {
@@ -96,8 +109,12 @@ void YXENVIRONMENT::loadvariables()
     {
         QFile::remove(lightpath);
     }
+}
 
-    QFile::copy(":/configs/gpldata01.txt", "gpldata01.txt");
-    QFile foo("gpldata01.txt");
-    foo.setPermissions(QFile::WriteUser);
+void YXENVIRONMENT::setSkinStyles()
+{
+    QFile skinFile(":/skins/default.qss");
+    skinFile.open( QFile::ReadOnly | QFile::Unbuffered );
+    qApp->setStyleSheet( skinFile.readAll( ) );
+    skinFile.close( );
 }
