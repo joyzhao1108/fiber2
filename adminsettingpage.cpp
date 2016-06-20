@@ -8,26 +8,65 @@ ConfigurationPage::ConfigurationPage(QWidget *parent)
     QFormLayout *formLayout = new QFormLayout;
     filepathLineEdit = new QLineEdit;
 
-    QHBoxLayout *huiduLayout = new QHBoxLayout;
-    huiduSpinBox1 = new QSpinBox;
-    huiduSpinBox2 = new QSpinBox;
-    huiduLayout->addWidget(huiduSpinBox1);
-    huiduLayout->addWidget(huiduSpinBox2);
+    //    QHBoxLayout *huiduLayout = new QHBoxLayout;
+    //    huiduSpinBox1 = new QSpinBox;
+    //    huiduSpinBox2 = new QSpinBox;
+    //    huiduLayout->addWidget(huiduSpinBox1);
+    //    huiduLayout->addWidget(huiduSpinBox2);
     lightrankLineEdit = new QLineEdit;
-    rankcountLineEdit = new QLineEdit;
+    lightrankLineEdit->setValidator(new QIntValidator(0, 1000, this));
+    //    rankcountLineEdit = new QLineEdit;
     radLineEdit = new QLineEdit;
-    formLayout->addRow(tr("&File Path:"), filepathLineEdit);
-    formLayout->addRow(tr("&HuiDu Section:"), huiduLayout);
+    QDoubleValidator*validator=new QDoubleValidator(0,99,8,this);
+
+    validator->setNotation(QDoubleValidator::StandardNotation);
+    radLineEdit->setValidator(validator);
+    //    formLayout->addRow(tr("&File Path:"), filepathLineEdit);
+    //    formLayout->addRow(tr("&HuiDu Section:"), huiduLayout);
+    QPushButton *startUpdateButton = new QPushButton(tr("Save"));
+
     formLayout->addRow(tr("&Light Rank:"), lightrankLineEdit);
-    formLayout->addRow(tr("&Rank Count:"), rankcountLineEdit);
     formLayout->addRow(tr("&Radius:"), radLineEdit);
 
     configGroup->setLayout(formLayout);
 
+
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addWidget(configGroup);
+    mainLayout->addSpacing(12);
+    mainLayout->addWidget(startUpdateButton);
     mainLayout->addStretch(1);
     setLayout(mainLayout);
+
+    connect(startUpdateButton, &QPushButton::clicked, this, &ConfigurationPage::save);
+
+    QTextCodec *codec = QTextCodec::codecForName("utf-8");
+    QSettings *settings = new QSettings("fiber.ini", QSettings::IniFormat);
+    settings->setIniCodec(codec);
+    settings->beginGroup("SysConfigs");
+    lightrankLineEdit->setText(settings->value("LightRankLowBound", 200).toString());
+    radLineEdit->setText(settings->value("RadiusLimit", 1.5000000).toString());
+    settings->endGroup();
+    delete settings;
+}
+
+bool ConfigurationPage::save()
+{
+    bool success = false;
+    QTextCodec *codec = QTextCodec::codecForName("utf-8");
+    QSettings *settings = new QSettings("fiber.ini", QSettings::IniFormat);
+    settings->setIniCodec(codec);
+    settings->beginGroup("SysConfigs");
+    settings->setValue("RadiusLimit", radLineEdit->text().toDouble());
+    settings->setValue("LightRankLowBound", lightrankLineEdit->text().toInt());
+    settings->endGroup();
+    delete settings;
+    success=true;
+    if(success)
+    {
+        QMessageBox::information(this,tr("Success"),tr("updated success!"),QMessageBox::Yes);
+    }
+    return success;
 }
 
 AdminPwdChangePage::AdminPwdChangePage(QWidget *parent)

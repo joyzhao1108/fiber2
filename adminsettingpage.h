@@ -48,5 +48,6 @@ private:
     QLineEdit *lightrankLineEdit;
     QLineEdit *rankcountLineEdit;
     QLineEdit *radLineEdit;
+    bool save();
 };
 #endif // ADMINSETTINGPAGE_H

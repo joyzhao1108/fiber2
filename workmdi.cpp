@@ -158,7 +158,7 @@ void WorkMdi::capture()
     QString tempImagePath = QDir::currentPath() + "/male.png";
     if(p->save(tempImagePath, "BMP", 1))
     {
-        imgFileNameA = tempImagePath;
+        imgFileName = tempImagePath;
     }
 }
 
@@ -264,13 +264,13 @@ void WorkMdi::changeharness(int index)
         resultmodel->clear();
         testimageLabel->hide();
         standardimageLabel->hide();
-        configparammodel->setItem(0,1,new QStandardItem("");
-        configparammodel->setItem(1,1,new QStandardItem("");
-        configparammodel->setItem(2,1,new QStandardItem("");
-        configparammodel->setItem(3,1,new QStandardItem("");
-        configparammodel->setItem(4,1,new QStandardItem("");
-        configparammodel->setItem(5,1,new QStandardItem("");
-        configparammodel->setItem(6,1,new QStandardItem("");
+        configparammodel->setItem(0,1,new QStandardItem(""));
+        configparammodel->setItem(1,1,new QStandardItem(""));
+        configparammodel->setItem(2,1,new QStandardItem(""));
+        configparammodel->setItem(3,1,new QStandardItem(""));
+        configparammodel->setItem(4,1,new QStandardItem(""));
+        configparammodel->setItem(5,1,new QStandardItem(""));
+        configparammodel->setItem(6,1,new QStandardItem(""));
     }
 
 }

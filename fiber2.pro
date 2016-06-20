@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     defectresultmodel.cpp \
     sysuser.cpp \
     usermanagedialog.cpp \
-    templatemodel.cpp
+    templatemodel.cpp \
+    Camera_c.cpp
 
 HEADERS  += mainwindow.h \
     workmdi.h \
@@ -39,7 +40,8 @@ HEADERS  += mainwindow.h \
     defectresultmodel.h \
     sysuser.h \
     usermanagedialog.h \
-    templatemodel.h
+    templatemodel.h \
+    Camera_h.h
 
 FORMS    += mainwindow.ui
 

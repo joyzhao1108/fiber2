@@ -51,6 +51,14 @@ void YXENVIRONMENT::load()
     settings->setValue("BasePicPath", templatePath + "female.bmp");
     QPixmap(":/images/female-test.bmp").save(templatePath + "female.bmp");
     settings->endArray();
+
+    if(!settings->childGroups().contains("SysConfigs"))
+    {
+        settings->beginGroup("SysConfigs");
+        settings->setValue("RadiusLimit", 1.5000000);
+        settings->setValue("LightRankLowBound", 200);
+        settings->endGroup();
+    }
     delete settings;
 
     QFile::copy(":/configs/gpldata01.txt", templatePath + "gpldata01.txt");
