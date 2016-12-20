@@ -234,7 +234,7 @@ TplListPage::TplListPage(QWidget *parent)
     TemplateModel *modeltemplate = new TemplateModel;
     QTableView *tableView = new QTableView;
     tableView->setModel(modeltemplate);
-    tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     QPushButton *addButton = new QPushButton(tr("Add"));
     QPushButton *editButton = new QPushButton(tr("Edit"));
@@ -254,9 +254,9 @@ TplListPage::TplListPage(QWidget *parent)
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addWidget(packageGroup);
 
-    mainLayout->addSpacing(12);
+    //mainLayout->addSpacing(12);
     //mainLayout->addWidget(addButton);
-    mainLayout->addStretch(1);
+    //mainLayout->addStretch(1);
     setLayout(mainLayout);
 
     connect(addButton, &QPushButton::clicked, this, &TplListPage::addnew);

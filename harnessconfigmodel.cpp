@@ -13,11 +13,13 @@ void HarnessConfigModel::addHarnessConfig(const HarnessConfig &config)
     endInsertRows();
 }
 
-bool HarnessConfigModel::loadfromfile(const QString &filename)
+bool HarnessConfigModel::loadfromfile(const QString &filename, bool isGongtou)
 {
     //Q_UNUSED(filename);
     qDebug()<<"loadfromfile:"<<filename;
     m_configFiePath = filename;
+    m_isGongtou = isGongtou;
+    m_gongtouradius = 0;
     if(!filename.isNull() && !filename.isEmpty()) {
         QFile file(filename);
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -25,11 +27,17 @@ bool HarnessConfigModel::loadfromfile(const QString &filename)
         }
         else
         {
+            beginResetModel();
+            m_configs.clear();
             QTextStream in(&file);
             int row = 0;
             while (!in.atEnd()) {
                 row++;
                 QString line = in.readLine();
+                if(line.isEmpty())
+                {
+                    break;
+                }
                 QStringList strlist = line.split(" ", QString::SkipEmptyParts);
                 QList<int> intlist;
 
@@ -50,31 +58,13 @@ bool HarnessConfigModel::loadfromfile(const QString &filename)
                         gongtouconfig[i] = intlist.at(i);
                     }
                 }
-                else if(row == 2)
-                {
-                    for (int i=0; i<nCount; ++i)
-                    {
-                        mutouconfig[i] = intlist.at(i);
-                    }
-                }
                 else
                 {
+                    int max = std::max(abs(intlist.at(0)),abs(intlist.at(1)));
+                    m_gongtouradius = std::max(max,m_gongtouradius);
 
-
-                    if(row <= gongtouconfig[8] + 2)
-                    {
-                        m_gongtouradius = std::max(abs(intlist.at(0)),abs(intlist.at(1)));
-                    }
-                    else
-                    {
-                        m_mutouradius = std::max(abs(intlist.at(0)),abs(intlist.at(1)));
-                    }
                     bool islocation = false;
-                    if(row>(gongtouconfig[8] + 2 - gongtouconfig[7]) && row<=(gongtouconfig[8] + 2))
-                    {
-                        islocation = true;
-                    }
-                    if(row>(mutouconfig[8] + gongtouconfig[8] + 2 - mutouconfig[7]) && row<=(mutouconfig[8] + gongtouconfig[8] + 2))
+                    if(row>(gongtouconfig[8] + 1 - gongtouconfig[7]) && row<=(gongtouconfig[8] + 1))
                     {
                         islocation = true;
                     }
@@ -85,7 +75,8 @@ bool HarnessConfigModel::loadfromfile(const QString &filename)
             }
             file.close();
             qDebug()<<"m_gongtouradius:"<<m_gongtouradius;
-            qDebug()<<"m_mutouradius:"<<m_mutouradius;
+
+            endResetModel();
             return true;
         }
 
@@ -111,71 +102,25 @@ QVariant HarnessConfigModel::data(const QModelIndex & index, int role) const {
     return QVariant();
 }
 
-QList<HarnessConfig> HarnessConfigModel::configs(int flag) const
+QList<HarnessConfig> HarnessConfigModel::configs() const
 {
-    QList<HarnessConfig> sublist;
-    int num;
-    int startindex;
-    int nCount;
-    if(flag==0)
-    {
-        startindex = 0;
-        num = gongtouconfig[8];//-gongtouconfig[7];
-    }
-    else
-    {
-        startindex = gongtouconfig[8];
-        num = mutouconfig[8];//-mutouconfig[7];
-    }
-    nCount = startindex + num;
-    int size = m_configs.size();
-    for (int i=startindex; i<nCount && i< size; ++i)
-    {
-        sublist << m_configs.at(i);
-    }
-    return sublist;
+    return m_configs;
 }
 
-int HarnessConfigModel::maxradius(int flag) const
+int HarnessConfigModel::maxradius() const
 {
-    int radius;
-    if(flag==0)
-    {
-        radius = gongtouconfig[4];
-    }
-    else
-    {
-        radius = m_mutouradius + 80;//mutouconfig[4];
-    }
-    return radius;
+    return m_gongtouradius + 80;
 }
 
-int HarnessConfigModel::inradius(int flag) const
+int HarnessConfigModel::inradius() const
 {
-    int radius;
-    if(flag==0)
-    {
-        radius = gongtouconfig[1];
-    }
-    else
-    {
-        radius = mutouconfig[1];
-    }
-    return radius;
+    return gongtouconfig[2]+10;
 }
 
-void HarnessConfigModel::seterror(int flag, int order, bool error)
+void HarnessConfigModel::seterror(int order, bool error)
 {
     beginResetModel();
-    if(flag==0)
-    {
-
-        m_configs[order - 1].seterror(error);
-    }
-    else
-    {
-        m_configs[gongtouconfig[8] + order - 1].seterror(error);
-    }
+    m_configs[order - 1].seterror(error);
     endResetModel();
 }
 

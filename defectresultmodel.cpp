@@ -54,11 +54,11 @@ QVariant DefectResultModel::data(const QModelIndex &index, int role) const
             bool pass = item->data(1).toBool();
             if(pass)
             {
-                return QIcon(":/icons/greenlight.ico");
+                return QIcon(":/icons/greenStone.png");
             }
             else
             {
-                return QIcon(":/icons/redlight.ico");
+                return QIcon(":/icons/redStone.png");
             }
         }
     }
@@ -80,17 +80,8 @@ QVariant DefectResultModel::headerData(int section, Qt::Orientation orientation,
 bool DefectResultModel::loadresult(const bool isGongtou)
 {
     bool callback = false;
-    QString configfile;
-    if(isGongtou)
-    {
-        configfile = YXENVIRONMENT::detectpath_gong;
-    }
-    else
-    {
-        configfile = YXENVIRONMENT::detectpath_mu;
-    }
-    if(!configfile.isNull()) {
-        QFile file(configfile);
+    if(!YXENVIRONMENT::detectpath.isNull()) {
+        QFile file(YXENVIRONMENT::detectpath);
         if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             QTextStream in(&file);
             QString xml = in.readAll();
@@ -121,45 +112,37 @@ bool DefectResultModel::setupModelData(const QString &xml)
     if(doc.setContent(xml))
     {
         beginResetModel();
-        QDomNode node;
+        m_configs.clear();
+
+        QDomElement element;
         QDomNode childnode;
         int seqno;
         QString title;
         bool pass;
         int defectcount;
-        QString lightrank = "200db";
+        int lightrank;
         QVector<QVariant> columnData;
-        QDomNodeList list = doc.elementsByTagName("detectDefect");
-        m_configs.clear();
+        QDomNodeList list = doc.elementsByTagName("Result");
         for(int i=0;i<list.count();i++){
-            node=list.at(i);
-            //qDebug()<<"node.firstChild().toElement().text():"<<node.firstChild().toElement().text();
-            seqno = node.firstChild().toElement().text().toInt();
+            element=list.at(i).toElement();
+            QDomElement lightRankNode = element.firstChildElement("lightRank");
+            QDomElement defectcountNode = element.firstChildElement("defectcount");
+            QDomElement seqnoNode = element.firstChildElement("order");
+            seqno = seqnoNode.text().toInt();
             title = "hup_" + QString::number(seqno + 1);
 
-            QDomNodeList childs = node.childNodes();
-            defectcount = childs.count();
+            QDomNodeList radchilds = element.elementsByTagName("rad");
+            defectcount = defectcountNode.text().toInt();
+            lightrank = lightRankNode.text().toInt();
             pass = (defectcount < 4);
             if(!pass)
             {
                 m_status = -1;
             }
-            //            for(int j=1;j<childs.count();j++){
-            //                childnode=childs.at(j);
-            //                title = "rad_" + QString::number(j);
-            //                description = childnode.toElement().text();
-            //                columnData.clear();
-            //                columnData << title << description;
-            //                thisitem->insertChildren(thisitem->childCount(), 1, rootItem->columnCount());
-            //                DefectResultItem *raditem = thisitem->child(thisitem->childCount() - 1);
-            //                for (int column = 0; column < columnData.size(); ++column)
-            //                    raditem->setData(column, columnData[column]);
-            //            }
             columnData.clear();
             columnData << title << pass << defectcount << lightrank;
 
             DefectResultItem *resultitem = new DefectResultItem(seqno, columnData);
-            //QList<DefectResultItem*> m_ccitems;
             m_configs << resultitem;
             callback = true;
         }

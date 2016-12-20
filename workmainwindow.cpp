@@ -1,14 +1,16 @@
-#include "workmdi.h"
+#include "workmainwindow.h"
 #include <QtWidgets>
 #include "yxenvironment.h"
 #include "defectresultmodel.h"
 #include "Camera_h.h"
-WorkMdi::WorkMdi(QWidget *parent) :
-    QMdiSubWindow(parent)
+WorkMainWindow::WorkMainWindow(QWidget *parent) :
+    QMainWindow(parent)
 {
     setWindowTitle(tr("MainWindow"));
+    setWindowIcon(QIcon(":/icons/logo.ico"));
+    setWindowFlags(Qt::FramelessWindowHint);
     QWidget *centralWidget = new QWidget(this);
-    setWidget(centralWidget);
+    setCentralWidget(centralWidget);
 
     configmodel = new HarnessConfigModel(this);
     templatemodel = new TemplateModel(this);
@@ -33,18 +35,26 @@ WorkMdi::WorkMdi(QWidget *parent) :
 
 
     QVBoxLayout *leftviewLayout = new QVBoxLayout(leftFrame);
+    QPixmap pixmap(1, 50);
+        pixmap.fill(Qt::transparent);
+        QIcon icon(pixmap);
+
     hanessComboBox = new QComboBox;
-    hanessComboBox->addItem(tr("Please Choose"), -1);
+    hanessComboBox->setIconSize(QSize(1, 50));
+
+    hanessComboBox->addItem(icon, tr("Please Choose"), -1);
     QSettings *settings = new QSettings("fiber.ini", QSettings::IniFormat);
+    settings->setIniCodec(QTextCodec::codecForName("utf-8"));
     int size = settings->beginReadArray("Templates");
     for (int i = 0; i < size; ++i) {
         settings->setArrayIndex(i);
-        hanessComboBox->addItem(settings->value("Title").toString(), i);
+        //qDebug()<< settings->value("Title");
+        hanessComboBox->addItem(icon, settings->value("Title").toString(), i);
     }
     settings->endArray();
     delete settings;
     void(QComboBox::*fp)(int)=&QComboBox::currentIndexChanged;
-    connect(hanessComboBox, fp, this, &WorkMdi::changeharness);
+    connect(hanessComboBox, fp, this, &WorkMainWindow::changeharness);
 
 
     statusResultView = new ResultView(configmodel);
@@ -77,81 +87,86 @@ WorkMdi::WorkMdi(QWidget *parent) :
     configTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     autoSelectPushButton = new QPushButton(tr("&autoselect"));
-    connect(autoSelectPushButton, &QPushButton::clicked, this, &WorkMdi::autoselect);
+    connect(autoSelectPushButton, &QPushButton::clicked, this, &WorkMainWindow::autoselect);
 
     leftviewLayout->addWidget(hanessComboBox);
     leftviewLayout->addWidget(autoSelectPushButton);
-    leftviewLayout->addSpacing(20);
+    //leftviewLayout->addSpacing(20);
     QFrame *line1 = new QFrame(this);
     line1->setGeometry(QRect(40, 180, 400, 3));
     line1->setFrameShape(QFrame::HLine);
     line1->setFrameShadow(QFrame::Sunken);
     line1->raise();
     leftviewLayout->addWidget(line1);
-    leftviewLayout->addSpacing(20);
+    //leftviewLayout->addSpacing(20);
     leftviewLayout->addWidget(statusResultView, 1, Qt::AlignHCenter);
     leftviewLayout->addWidget(configTableView);
     //leftviewLayout->addStretch();
 
 
     QVBoxLayout *centerLayout = new QVBoxLayout(centerFrame);
-    centerLayout->setMargin(0);
-    QGridLayout *viewLayout = new QGridLayout;
-    //viewLayout->setSpacing(2);
 
-    standardimageLabel = new QLabel(tr("pls capture"));
-    standardimageLabel->setScaledContents(true);
+    photopreviewTableWidget = new QTableWidget(1,2);
+    photopreviewTableWidget->setFixedHeight(220);
+    QStringList previewheader;
+    previewheader<<tr("template")<<tr("test");
+    photopreviewTableWidget->setHorizontalHeaderLabels(previewheader);
+    //photopreviewTableWidget->horizontalHeader()->setClickable(false);
+    photopreviewTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    photopreviewTableWidget->verticalHeader()->setVisible(false);
+    photopreviewTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    photopreviewTableWidget->setRowHeight(0,200);
+    standardimageLabel = new QLabel();
+    //standardimageLabel->setPixmap(QPixmap(":/images/male-test.png").scaledToHeight(200));
     standardimageLabel->setAlignment(Qt::AlignCenter);
-    standardimageLabel->setFixedSize(QSize(200,200));
-    testimageLabel = new QLabel(tr("pls capture"));
-    testimageLabel->setScaledContents(true);
+    testimageLabel = new QLabel();
+    //testimageLabel->setPixmap(QPixmap(":/images/male-test.png").scaledToHeight(200));
     testimageLabel->setAlignment(Qt::AlignCenter);
-    testimageLabel->setFixedSize(QSize(200,200));
-    statusResultView->hide();
-    testimageLabel->hide();
-    standardimageLabel->hide();
+    photopreviewTableWidget->setCellWidget(0,0, standardimageLabel);
+    photopreviewTableWidget->setCellWidget(0,1, testimageLabel);
 
-    statuslogTextEdit = new QTextEdit(tr("Starting test..."));
 
+    titleLabel = new QLabel(tr("Waiting..."));
+    titleLabel->setObjectName("titleLabel");
+    titleLabel->setProperty("status", "0");
+    titleLabel->setFixedHeight(32);
+    titleLabel->setAlignment(Qt::AlignCenter);
 
     resultmodel = new DefectResultModel;
     resultTableView = new QTableView;
     resultTableView->setModel(resultmodel);
     resultTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     resultTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    resultTableView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    viewLayout->addWidget(new QLabel(tr("template")), 0, 0, Qt::AlignCenter);
-    viewLayout->addWidget(new QLabel(tr("test")), 0, 1, Qt::AlignCenter);
-    viewLayout->addWidget(standardimageLabel, 1, 0);
-    viewLayout->addWidget(testimageLabel, 1, 1);
+    statuslogTextEdit = new QTextEdit(tr("Starting test..."));
+    statuslogTextEdit->setFixedHeight(100);
 
-    viewLayout->setRowStretch(0,1);
-    viewLayout->setRowStretch(1,4);
 
-    titleLabel = new QLabel(tr("Waiting..."));
-    titleLabel->setObjectName("titleLabel");
-    titleLabel->setProperty("status", "0");
-    titleLabel->setFixedHeight(40);
-    titleLabel->setAlignment(Qt::AlignCenter);
     //titleLabel->setStyleSheet("background-color: lightblue;");
     centerLayout->addWidget(titleLabel);
-    centerLayout->addLayout(viewLayout);
+    centerLayout->addWidget(photopreviewTableWidget);
     centerLayout->addWidget(resultTableView);
     centerLayout->addWidget(statuslogTextEdit);
+    centerLayout->setMargin(0);
+    centerLayout->setSpacing(0);
 
 
     QVBoxLayout *controlLayout = new QVBoxLayout(rightFrame);
 
     capturePushButton = new QPushButton(tr("&capture"));
-    connect(capturePushButton, &QPushButton::clicked, this, &WorkMdi::capture);
-    lightTestPushButton = new QPushButton(tr("&Light Test"));
-    connect(lightTestPushButton, &QPushButton::clicked, this, &WorkMdi::lightanalyzeclicked);
-    defectTestPushButton = new QPushButton(tr("&Defect Test"));
-    connect(defectTestPushButton, &QPushButton::clicked, this, &WorkMdi::defectanalyzeclicked);
-    autoTestPushButton = new QPushButton(tr("&Auto Test"));
-    connect(autoTestPushButton, &QPushButton::clicked, this, &WorkMdi::autoanalyzeclicked);
-    reportPushButton = new QPushButton(tr("&Report Preview"));
-    connect(reportPushButton, &QPushButton::clicked, this, &WorkMdi::generatereport);
+    connect(capturePushButton, &QPushButton::clicked, this, &WorkMainWindow::capture);
+    lightTestPushButton = new QPushButton(QIcon(":/icons/right-32.png"), tr("&Light Test"), this);
+    connect(lightTestPushButton, &QPushButton::clicked, this, &WorkMainWindow::lightanalyzeclicked);
+    defectTestPushButton = new QPushButton(QIcon(":/icons/right-32.png"), tr("&Defect Test"), this);
+    connect(defectTestPushButton, &QPushButton::clicked, this, &WorkMainWindow::defectanalyzeclicked);
+    autoTestPushButton = new QPushButton(QIcon(":/icons/right-32.png"), tr("&Auto Test"), this);
+    connect(autoTestPushButton, &QPushButton::clicked, this, &WorkMainWindow::autoanalyzeclicked);
+    reportPushButton = new QPushButton(QIcon(":/icons/zoomin.png"), tr("&Report Preview"), this);
+    connect(reportPushButton, &QPushButton::clicked, this, &WorkMainWindow::generatereport);
+    exitPushButton = new QPushButton(QIcon(":/icons/exit.png"), tr("&Quit"), this);
+    connect(exitPushButton, &QPushButton::clicked, this, &QApplication::quit);
+
     controlLayout->addWidget(capturePushButton);
     controlLayout->addSpacing(20);
     QFrame *line = new QFrame(this);
@@ -178,18 +193,20 @@ WorkMdi::WorkMdi(QWidget *parent) :
     controlLayout->addStretch();
     controlLayout->setSpacing(10);
 
+    controlLayout->addWidget(exitPushButton);
+
     mainLayout->addWidget(leftFrame);
     mainLayout->addWidget(centerFrame);
     mainLayout->addWidget(rightFrame);
-    mainLayout->setStretch(0,1);
-    mainLayout->setStretch(1,3);
-    mainLayout->setStretch(2,1);
+    mainLayout->setStretch(0,4);
+    mainLayout->setStretch(1,9);
+    mainLayout->setStretch(2,2);
 
     QLabel *productNameLabel = new QLabel(tr("product name"), this);
     productNameLabel->setScaledContents(true);
     productNameLabel->setAlignment(Qt::AlignCenter);
     productNameLabel->setObjectName("productNameLabel");
-    productNameLabel->setFixedHeight(60);
+    productNameLabel->setFixedHeight(48);
     windowLayout->addWidget(productNameLabel);
     windowLayout->addLayout(mainLayout);
     //    imgFileNameDefect = QString("");
@@ -210,7 +227,7 @@ WorkMdi::WorkMdi(QWidget *parent) :
     }
 }
 
-void WorkMdi::capture()
+void WorkMainWindow::capture()
 {
     if(hanessComboBox->currentIndex() == 0)
     {
@@ -241,29 +258,29 @@ void WorkMdi::capture()
     }
 }
 
-void WorkMdi::autoselect()
+void WorkMainWindow::autoselect()
 {
     hanessComboBox->setCurrentIndex(1);
     //hanessComboBox->view()->selectionModel()->setCurrentIndex(hanessComboBox->model()->index(1,hanessComboBox->modelColumn(),hanessComboBox->rootModelIndex()),QItemSelectionModel::ClearAndSelect);
-    changeharness(1);
+    //changeharness(1);
 }
 
-void WorkMdi::defectanalyzeclicked()
+void WorkMainWindow::defectanalyzeclicked()
 {
     startanalyze(1);
 }
 
-void WorkMdi::lightanalyzeclicked()
+void WorkMainWindow::lightanalyzeclicked()
 {
     startanalyze(3);
 }
 
-void WorkMdi::autoanalyzeclicked()
+void WorkMainWindow::autoanalyzeclicked()
 {
     startanalyze(2);
 }
 
-void WorkMdi::startanalyze(int flag)
+void WorkMainWindow::startanalyze(int flag)
 {
     if(hanessComboBox->currentIndex() == 0)
     {
@@ -308,12 +325,19 @@ void WorkMdi::startanalyze(int flag)
     appendlog(tr("Analyze finished"));
 }
 
-void WorkMdi::generatereport()
+void WorkMainWindow::generatereport()
 {
-    QMessageBox::about(NULL, "About", "Still <font color='red'>in progress</font>");
+    if(reportview == NULL)
+    {
+        appendlog(tr("new reportview."));
+        reportview = new ReportView(this);
+        reportview->setModal(true);
+        //rv->setAttribute(Qt::WA_DeleteOnClose);
+    }
+    reportview->showMaximized();
 }
 
-void WorkMdi::loadresult()
+void WorkMainWindow::loadresult()
 {
     bool isloadsuccess = resultmodel->loadresult(true);
     if(isloadsuccess)
@@ -346,7 +370,7 @@ void WorkMdi::loadresult()
     }
 }
 
-void WorkMdi::changeharness(int index)
+void WorkMainWindow::changeharness(int index)
 {
     if(index != 0)
     {
@@ -418,7 +442,7 @@ void WorkMdi::changeharness(int index)
     titleLabel->setText(tr("Waiting..."));
 }
 
-void WorkMdi::appendlog(const QString &text)
+void WorkMainWindow::appendlog(const QString &text)
 {
     QStringList log;
     log << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss") << text;
@@ -428,7 +452,7 @@ void WorkMdi::appendlog(const QString &text)
     statuslogTextEdit->verticalScrollBar()->setValue(statuslogTextEdit->verticalScrollBar()->maximum());
 }
 
-void WorkMdi::appenderror(const QString &text)
+void WorkMainWindow::appenderror(const QString &text)
 {
     appendlog(QString("<span style=' color:#ff0000;'>%1</span>").arg(text));
 }

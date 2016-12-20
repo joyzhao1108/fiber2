@@ -1,7 +1,7 @@
 #include "resultview.h"
 
-ResultView::ResultView(int flag, HarnessConfigModel *model, QWidget *parent) :
-    QLabel(parent),m_flag(flag),m_model(model)
+ResultView::ResultView(HarnessConfigModel *model, QWidget *parent) :
+    QLabel(parent),m_model(model)
 {
     resize(100,100);
     //setStyleSheet("background-color: red;");
@@ -10,23 +10,28 @@ ResultView::ResultView(int flag, HarnessConfigModel *model, QWidget *parent) :
 void ResultView::setresult(const DefectResultModel *resultmodel)
 {
 
-    QList<HarnessConfig> list = m_model->configs(m_flag);
+    QList<HarnessConfig> list = m_model->configs();
     //qDebug()<< "list.size():" << list.size();
     for(int i= 0;i< list.size(); i++)
     {
         QModelIndex index = resultmodel->index(i,1);
         bool pass = resultmodel->data(index,Qt::EditRole).toBool();
         int order = i + 1;
-         m_model->seterror(m_flag, order, !pass);
+         m_model->seterror(order, !pass);
     }
+    reload();
+}
+
+void ResultView::reload()
+{
     emit update();
 }
 
 void ResultView::paintEvent(QPaintEvent *)
 {
-    int width = (m_model->maxradius(m_flag) + 20)*2;
-    int radiusout = m_model->maxradius(m_flag);
-    int radiusin = m_model->inradius(m_flag);
+    int width = (m_model->maxradius() + 20)*2;
+    int radiusout = m_model->maxradius();
+    int radiusin = m_model->inradius()+5;
     paint = new QPainter;
 
     paint->begin(this);
@@ -44,25 +49,35 @@ void ResultView::paintEvent(QPaintEvent *)
     //qDebug()<<"strart paint harness:";
 
 
-    QList<HarnessConfig> list = m_model->configs(m_flag);
+    QList<HarnessConfig> list = m_model->configs();
     //qDebug()<<"listRows:"<<list.count();
+    QPixmap pixmapgreen(":/icons/greenStone.png");
+    QPixmap pixmapred(":/icons/redStone.png");
     foreach(HarnessConfig config, list)
     {
         if(config.location())
         {
-            paint->setBrush(QBrush(Qt::gray,Qt::SolidPattern));
+            paint->drawPixmap(config.point().x()-radiusin,config.point().y()-radiusin,2*radiusin,2*radiusin,QPixmap(":/icons/yellowStone.png"));
+            //paint->setBrush(QBrush(Qt::gray,Qt::SolidPattern));
+            //paint->drawEllipse(config.point(),radiusin,radiusin);
         }
         else if(config.error())
         {
-            paint->setBrush(QBrush(Qt::red,Qt::SolidPattern));
+            paint->drawPixmap(config.point().x()-radiusin,config.point().y()-radiusin,2*radiusin,2*radiusin,QPixmap(":/icons/redStone.png"));
+            //paint->drawPixmap(config.point(),QPixmap(":/icons/redStone.png"), QRect(config.point().x()-radiusin, config.point().y()-radiusin, 2*radiusin,2*radiusin));
+            //paint->setBrush(QBrush(Qt::red,Qt::SolidPattern));
+            //paint->drawEllipse(config.point(),radiusin,radiusin);
         }
         else
         {
-            //qDebug()<<"order:"<<config.order();
-            paint->setBrush(QBrush(Qt::green,Qt::SolidPattern));
+            paint->drawPixmap(config.point().x()-radiusin,config.point().y()-radiusin,2*radiusin,2*radiusin,QPixmap(":/icons/greenStone.png"));
+            //paint->drawPixmap(config.point(),QPixmap(":/icons/greenStone.png"), QRect(config.point().x()-radiusin, config.point().y()-radiusin, 2*radiusin,2*radiusin));
+            //paint->setBrush(QBrush(Qt::green,Qt::SolidPattern));
+            //paint->drawEllipse(config.point(),radiusin,radiusin);
         }
-        paint->drawEllipse(config.point(),radiusin,radiusin);
+
     }
+    //paint->drawPixmap(0,0,100,100,QPixmap(":/icons/redStone.png"));
     paint->end();
     delete paint;
 }

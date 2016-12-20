@@ -14,14 +14,16 @@ public:
 
 private:
     bool m_isadminlogin;
+    QLabel *logoLabel;
+    QLabel *companyLabel;
     QLineEdit *nameLineEdit;
     QLineEdit *pwdLineEdit;
     QPushButton *okButton;
     QPushButton *cancelButton;
-
+/*
     void mouseMoveEvent(QMouseEvent*event);
     void mousePressEvent(QMouseEvent*event);
-    void mouseReleaseEvent(QMouseEvent*event);
+    void mouseReleaseEvent(QMouseEvent*event);*/
     QPoint dragPosition;
 
     void paintEvent(QPaintEvent*);

@@ -3,16 +3,15 @@
 #include <QtWidgets>
 #include <QLibrary>
 #include "sysuser.h"
-typedef bool (*DectectFunction)(char *,char *,char *,char *);
+typedef bool (*DectectFunction)(char *,char *,char *,int);
 class YXENVIRONMENT
 {
 public:
     explicit YXENVIRONMENT();
-    static DectectFunction detectFun;
+    static DectectFunction detectFunM;
+    static DectectFunction detectFunF;
 
-    static QString detectpath_gong;
-    static QString detectpath_mu;
-    static QString lightpath;
+    static QString detectpath;
     static void load();
 
     static void setSkinStyles();

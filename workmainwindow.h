@@ -1,14 +1,15 @@
-﻿#ifndef WORKMDI_H
-#define WORKMDI_H
+#ifndef WORKMAINWINDOW_H
+#define WORKMAINWINDOW_H
 #include <resultview.h>
 #include <QtWidgets>
 #include "harnessconfigmodel.h"
 #include "templatemodel.h"
-class WorkMdi : public QMdiSubWindow
+#include "reportview.h"
+class WorkMainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit WorkMdi(QWidget *parent = 0);
+    explicit WorkMainWindow(QWidget *parent = 0);
 
 private:
     QString imgFileNameDefect;
@@ -18,27 +19,31 @@ private:
     QFrame * leftFrame;
     QFrame * centerFrame;
     QFrame * rightFrame;
-    QPushButton *autoSelectPushButton;//拍摄按钮
+    QPushButton *autoSelectPushButton;//auto select button
 
 
-    QPushButton *capturePushButton;//拍摄按钮
+    QPushButton *capturePushButton;//capture button
 
     QPushButton *lightTestPushButton;
     QPushButton *defectTestPushButton;
     QPushButton *autoTestPushButton;
 
-    QPushButton *reportPushButton;//导出报告按钮
+    QPushButton *reportPushButton;//export report button
+    QPushButton *exitPushButton;
 
-    QLabel *titleLabel;//标题栏
+    QLabel *titleLabel;//title bar
     QLabel *standardimageLabel;
     QLabel *testimageLabel;
-    QLabel *iconStatusLabel;
+
+
     QTextEdit *statuslogTextEdit;
     ResultView *statusResultView;
     QTableView *resultTableView;
     QTableView *configTableView;
+    QTableWidget *photopreviewTableWidget;
+    ReportView *reportview;
 
-    QComboBox *hanessComboBox;//线束类型
+    QComboBox *hanessComboBox;//hanesstype
 
     void capture();
     void autoselect();
@@ -63,5 +68,4 @@ private:
     unsigned int *m_SerialNumber;
 
 };
-
-#endif // WORKMDI_H
+#endif // WORKMAINWINDOW_H

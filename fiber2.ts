@@ -4,59 +4,59 @@
 <context>
     <name>AdminPwdChangePage</name>
     <message>
-        <location filename="adminsettingpage.cpp" line="37"/>
+        <location filename="adminsettingpage.cpp" line="75"/>
         <source>Admin Password Modify</source>
         <translation>管理员密码修改</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="39"/>
+        <location filename="adminsettingpage.cpp" line="77"/>
         <source>Old Password:</source>
         <translation>旧密码：</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="43"/>
+        <location filename="adminsettingpage.cpp" line="81"/>
         <source>New Password:</source>
         <translation>新密码：</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="47"/>
+        <location filename="adminsettingpage.cpp" line="85"/>
         <source>Password Confirm:</source>
         <translation>密码确认：</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="54"/>
+        <location filename="adminsettingpage.cpp" line="92"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="85"/>
-        <location filename="adminsettingpage.cpp" line="91"/>
-        <location filename="adminsettingpage.cpp" line="99"/>
+        <location filename="adminsettingpage.cpp" line="123"/>
+        <location filename="adminsettingpage.cpp" line="129"/>
+        <location filename="adminsettingpage.cpp" line="137"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="85"/>
+        <location filename="adminsettingpage.cpp" line="123"/>
         <source>password confirm is not same!</source>
         <translation>两次密码不一致！</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="91"/>
+        <location filename="adminsettingpage.cpp" line="129"/>
         <source>new password length must be more 4!</source>
         <translation>密码长度必须超过4位！</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="99"/>
+        <location filename="adminsettingpage.cpp" line="137"/>
         <source>old password is not correct!</source>
         <translation>旧密码不正确！</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="111"/>
+        <location filename="adminsettingpage.cpp" line="149"/>
         <source>Success</source>
         <translation>操作成功</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="111"/>
+        <location filename="adminsettingpage.cpp" line="149"/>
         <source>updated success!</source>
         <translation>操作成功！</translation>
     </message>
@@ -64,32 +64,32 @@
 <context>
     <name>AdminSettingDialog</name>
     <message>
-        <location filename="adminsettingdialog.cpp" line="7"/>
+        <location filename="adminsettingdialog.cpp" line="6"/>
         <source>Admin Settings Dialog</source>
         <translation>系统管理</translation>
     </message>
     <message>
-        <location filename="adminsettingdialog.cpp" line="29"/>
+        <location filename="adminsettingdialog.cpp" line="28"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="adminsettingdialog.cpp" line="64"/>
+        <location filename="adminsettingdialog.cpp" line="63"/>
         <source>Admin Password</source>
         <translation>管理密码修改</translation>
     </message>
     <message>
-        <location filename="adminsettingdialog.cpp" line="70"/>
+        <location filename="adminsettingdialog.cpp" line="69"/>
         <source>User List</source>
         <translation>普通用户管理</translation>
     </message>
     <message>
-        <location filename="adminsettingdialog.cpp" line="76"/>
+        <location filename="adminsettingdialog.cpp" line="75"/>
         <source>Test Template</source>
         <translation>测试模板管理</translation>
     </message>
     <message>
-        <location filename="adminsettingdialog.cpp" line="57"/>
+        <location filename="adminsettingdialog.cpp" line="56"/>
         <source>System Configuration</source>
         <translation>系统参数设置</translation>
     </message>
@@ -97,32 +97,44 @@
 <context>
     <name>ConfigurationPage</name>
     <message>
-        <location filename="adminsettingpage.cpp" line="8"/>
+        <location filename="adminsettingpage.cpp" line="7"/>
         <source>Server configuration</source>
         <translation>系统参数设置</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="20"/>
+        <location filename="adminsettingpage.cpp" line="26"/>
+        <source>Save</source>
+        <translation>保存</translation>
+    </message>
+    <message>
+        <location filename="adminsettingpage.cpp" line="67"/>
+        <source>Success</source>
+        <translation>操作成功</translation>
+    </message>
+    <message>
+        <location filename="adminsettingpage.cpp" line="67"/>
+        <source>updated success!</source>
+        <translation>操作成功！</translation>
+    </message>
+    <message>
         <source>&amp;File Path:</source>
-        <translation>&amp;文件路径：</translation>
+        <translation type="vanished">&amp;文件路径：</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="21"/>
         <source>&amp;HuiDu Section:</source>
-        <translation>&amp;灰度区间：</translation>
+        <translation type="vanished">&amp;灰度区间：</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="22"/>
+        <location filename="adminsettingpage.cpp" line="28"/>
         <source>&amp;Light Rank:</source>
         <translation>&amp;光强：</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="23"/>
         <source>&amp;Rank Count:</source>
-        <translation>&amp;段数：</translation>
+        <translation type="vanished">&amp;段数：</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="24"/>
+        <location filename="adminsettingpage.cpp" line="29"/>
         <source>&amp;Radius:</source>
         <translation>&amp;角度：</translation>
     </message>
@@ -168,7 +180,7 @@
 <context>
     <name>HarnessConfigModel</name>
     <message>
-        <location filename="harnessconfigmodel.cpp" line="24"/>
+        <location filename="harnessconfigmodel.cpp" line="26"/>
         <source>Cannot open result file:
 %1</source>
         <translation>无法打开结果文件:\n%1</translation>
@@ -184,26 +196,26 @@
     <message>
         <location filename="initdialog.cpp" line="19"/>
         <source>company name</source>
-        <translation>英鑫光电</translation>
+        <translation>Copyright © 成都英鑫光科技有限公司版权所有 v1.0</translation>
     </message>
     <message>
         <location filename="initdialog.cpp" line="8"/>
-        <location filename="initdialog.cpp" line="24"/>
+        <location filename="initdialog.cpp" line="34"/>
         <source>product name</source>
-        <translation>Fiber Detector 光线端面检测系统 v1.0</translation>
+        <translation>Fiber Detector 光线端面检测系统</translation>
     </message>
     <message>
-        <location filename="initdialog.cpp" line="33"/>
+        <location filename="initdialog.cpp" line="36"/>
         <source>Admin Setting</source>
         <translation>系统管理</translation>
     </message>
     <message>
-        <location filename="initdialog.cpp" line="34"/>
+        <location filename="initdialog.cpp" line="37"/>
         <source>Start Test</source>
         <translation>进入测试</translation>
     </message>
     <message>
-        <location filename="initdialog.cpp" line="35"/>
+        <location filename="initdialog.cpp" line="38"/>
         <source>Quit</source>
         <translation>退出</translation>
     </message>
@@ -216,32 +228,42 @@
         <translation>Fiber Detector 光线端面检测系统 v1.0</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="26"/>
+        <location filename="logindialog.cpp" line="12"/>
+        <source>logo</source>
+        <translation>图标</translation>
+    </message>
+    <message>
+        <location filename="logindialog.cpp" line="15"/>
+        <source>company name</source>
+        <translation>Copyright © 成都英鑫光科技有限公司版权所有 v1.0</translation>
+    </message>
+    <message>
+        <location filename="logindialog.cpp" line="36"/>
         <source>Admin Login Window</source>
         <translation>管理员登录</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="30"/>
+        <location filename="logindialog.cpp" line="40"/>
         <source>Test Login Window</source>
         <translation>测试员登录</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="39"/>
+        <location filename="logindialog.cpp" line="50"/>
         <source>&amp;Login</source>
         <translation>&amp;登录</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="40"/>
+        <location filename="logindialog.cpp" line="51"/>
         <source>&amp;Cancel</source>
         <translation>&amp;取消</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="103"/>
+        <location filename="logindialog.cpp" line="120"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="103"/>
+        <location filename="logindialog.cpp" line="120"/>
         <source>username or password is wrong!</source>
         <translation>账号或密码错误！</translation>
     </message>
@@ -249,7 +271,7 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.ui" line="13"/>
+        <location filename="mainwindow.ui" line="14"/>
         <source>MainWindow</source>
         <translation>英鑫光电测试工具</translation>
     </message>
@@ -304,92 +326,143 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="main.cpp" line="44"/>
-        <source>Setting up the main window...</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="main.cpp" line="52"/>
         <source>Loading modules...</source>
-        <translation>正在加载模块...</translation>
+        <translation type="vanished">正在加载模块...</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="56"/>
         <source>Establishing connections...</source>
-        <translation>正在打开设备...</translation>
+        <translation type="vanished">正在打开设备...</translation>
     </message>
 </context>
 <context>
     <name>QWidget</name>
     <message>
-        <location filename="logindialog.cpp" line="32"/>
+        <location filename="logindialog.cpp" line="43"/>
         <source>UserName:</source>
         <translation>账号：</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="35"/>
+        <location filename="logindialog.cpp" line="46"/>
         <source>Password:</source>
         <translation>密码：</translation>
     </message>
 </context>
 <context>
+    <name>ReportView</name>
+    <message>
+        <location filename="reportview.cpp" line="6"/>
+        <source>ReportView</source>
+        <translation>报告预览</translation>
+    </message>
+    <message>
+        <location filename="reportview.cpp" line="26"/>
+        <source>&amp;export</source>
+        <translation>&amp;导出Word</translation>
+    </message>
+    <message>
+        <location filename="reportview.cpp" line="28"/>
+        <source>&amp;Quit</source>
+        <translation>&amp;关闭预览</translation>
+    </message>
+    <message>
+        <location filename="reportview.cpp" line="116"/>
+        <source>Save Report</source>
+        <translation>保存报告</translation>
+    </message>
+    <message>
+        <location filename="reportview.cpp" line="118"/>
+        <source>*.doc</source>
+        <translation>*.doc</translation>
+    </message>
+</context>
+<context>
+    <name>SelfCheck</name>
+    <message>
+        <location filename="selfcheck.cpp" line="7"/>
+        <source>product name</source>
+        <translation>Fiber Detector 光线端面检测系统</translation>
+    </message>
+    <message>
+        <location filename="selfcheck.cpp" line="13"/>
+        <source>&amp;Cancel</source>
+        <translation>&amp;取消</translation>
+    </message>
+    <message>
+        <location filename="selfcheck.cpp" line="46"/>
+        <source>start checking...</source>
+        <translation>软件自检启动中...</translation>
+    </message>
+    <message>
+        <location filename="selfcheck.cpp" line="48"/>
+        <source>check environment variables...</source>
+        <translation>开始加载系统环境参数...</translation>
+    </message>
+    <message>
+        <location filename="selfcheck.cpp" line="51"/>
+        <source>environment variables loaded!</source>
+        <translation>系统参数加载完毕！</translation>
+    </message>
+    <message>
+        <location filename="selfcheck.cpp" line="53"/>
+        <source>check camera...</source>
+        <translation>检查摄像头连接...</translation>
+    </message>
+    <message>
+        <location filename="selfcheck.cpp" line="55"/>
+        <source>camera load and init successfully!</source>
+        <translation>相机初始化成功！</translation>
+    </message>
+    <message>
+        <location filename="selfcheck.cpp" line="57"/>
+        <source>Setting up the main window...</source>
+        <translation>开始准备加载主窗口界面...</translation>
+    </message>
+</context>
+<context>
     <name>StudyTemplate</name>
     <message>
-        <location filename="studytemplate.cpp" line="7"/>
         <source>Admin Password Modify</source>
-        <translation type="unfinished">管理员密码修改</translation>
+        <translation type="obsolete">管理员密码修改</translation>
     </message>
     <message>
-        <location filename="studytemplate.cpp" line="9"/>
         <source>Old Password:</source>
-        <translation type="unfinished">旧密码：</translation>
+        <translation type="obsolete">旧密码：</translation>
     </message>
     <message>
-        <location filename="studytemplate.cpp" line="13"/>
         <source>New Password:</source>
-        <translation type="unfinished">新密码：</translation>
+        <translation type="obsolete">新密码：</translation>
     </message>
     <message>
-        <location filename="studytemplate.cpp" line="17"/>
         <source>Password Confirm:</source>
-        <translation type="unfinished">密码确认：</translation>
+        <translation type="obsolete">密码确认：</translation>
     </message>
     <message>
-        <location filename="studytemplate.cpp" line="24"/>
         <source>Save</source>
-        <translation type="unfinished">保存</translation>
+        <translation type="obsolete">保存</translation>
     </message>
     <message>
-        <location filename="studytemplate.cpp" line="55"/>
-        <location filename="studytemplate.cpp" line="61"/>
-        <location filename="studytemplate.cpp" line="69"/>
         <source>Warning</source>
-        <translation type="unfinished">警告</translation>
+        <translation type="obsolete">警告</translation>
     </message>
     <message>
-        <location filename="studytemplate.cpp" line="55"/>
         <source>password confirm is not same!</source>
-        <translation type="unfinished">两次密码不一致！</translation>
+        <translation type="obsolete">两次密码不一致！</translation>
     </message>
     <message>
-        <location filename="studytemplate.cpp" line="61"/>
         <source>new password length must be more 4!</source>
-        <translation type="unfinished">密码长度必须超过4位！</translation>
+        <translation type="obsolete">密码长度必须超过4位！</translation>
     </message>
     <message>
-        <location filename="studytemplate.cpp" line="69"/>
         <source>old password is not correct!</source>
-        <translation type="unfinished">旧密码不正确！</translation>
+        <translation type="obsolete">旧密码不正确！</translation>
     </message>
     <message>
-        <location filename="studytemplate.cpp" line="81"/>
         <source>Success</source>
-        <translation type="unfinished">操作成功</translation>
+        <translation type="obsolete">操作成功</translation>
     </message>
     <message>
-        <location filename="studytemplate.cpp" line="81"/>
         <source>updated success!</source>
-        <translation type="unfinished">操作成功！</translation>
+        <translation type="obsolete">操作成功！</translation>
     </message>
 </context>
 <context>
@@ -480,7 +553,7 @@
 <context>
     <name>TplListPage</name>
     <message>
-        <location filename="adminsettingpage.cpp" line="194"/>
+        <location filename="adminsettingpage.cpp" line="232"/>
         <source>Test Template List</source>
         <translation>测试模板列表</translation>
     </message>
@@ -513,17 +586,17 @@
         <translation type="vanished">创建日期</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="201"/>
+        <location filename="adminsettingpage.cpp" line="239"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="202"/>
+        <location filename="adminsettingpage.cpp" line="240"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="203"/>
+        <location filename="adminsettingpage.cpp" line="241"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
@@ -585,40 +658,287 @@
 <context>
     <name>UserManagePage</name>
     <message>
-        <location filename="adminsettingpage.cpp" line="119"/>
+        <location filename="adminsettingpage.cpp" line="157"/>
         <source>User List</source>
         <translation>普通用户管理</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="128"/>
+        <location filename="adminsettingpage.cpp" line="166"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="129"/>
+        <location filename="adminsettingpage.cpp" line="167"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="130"/>
+        <location filename="adminsettingpage.cpp" line="168"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="172"/>
+        <location filename="adminsettingpage.cpp" line="210"/>
         <source>Success</source>
         <translation>操作成功</translation>
     </message>
     <message>
-        <location filename="adminsettingpage.cpp" line="172"/>
+        <location filename="adminsettingpage.cpp" line="210"/>
         <source>operate success!</source>
         <translation>操作成功！</translation>
     </message>
 </context>
 <context>
+    <name>WorkMainWindow</name>
+    <message>
+        <location filename="workmainwindow.cpp" line="9"/>
+        <source>MainWindow</source>
+        <translation>测试窗口</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="45"/>
+        <source>Please Choose</source>
+        <translation>请选择</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="63"/>
+        <source>parameter</source>
+        <translation>参数</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="64"/>
+        <source>value</source>
+        <translation>值</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="66"/>
+        <source>Title</source>
+        <translation>标题</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="67"/>
+        <source>Model</source>
+        <translation>型号</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="68"/>
+        <source>TotalHoleCount</source>
+        <translation>插孔个数</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="69"/>
+        <source>LocationHoleCount</source>
+        <translation>定位孔个数</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="70"/>
+        <source>Creator</source>
+        <translation>创建者</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="71"/>
+        <source>CreateDate</source>
+        <translation>创建日期</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="72"/>
+        <source>IsGongTou</source>
+        <translation>端子方向</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="73"/>
+        <source>DivideHoleRadius</source>
+        <translation>分割插孔尺寸</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="74"/>
+        <source>CirqueOutRadius</source>
+        <translation>插孔圆环外径</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="75"/>
+        <source>CirqueInRadius</source>
+        <translation>插孔圆环内径</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="76"/>
+        <source>GongHoughMinRadius</source>
+        <translation>检测公头圆心霍夫变换函数最小半径</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="77"/>
+        <source>GongHoughMaxRadius</source>
+        <translation>检测公头圆心霍夫变换函数最大半径</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="78"/>
+        <source>MuHoughMinRadius</source>
+        <translation>检测插孔圆心霍夫变换函数的最小半径</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="79"/>
+        <source>MuHoughMaxRadius</source>
+        <translation>检测插孔圆心霍夫变换函数的最大半径</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="87"/>
+        <source>&amp;autoselect</source>
+        <translation>&amp;自动检测</translation>
+    </message>
+    <message>
+        <source>pls capture</source>
+        <translation type="vanished">请点击拍摄按钮</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="140"/>
+        <source>Starting test...</source>
+        <translation>开始测试...</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="110"/>
+        <source>template</source>
+        <translation>模板</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="110"/>
+        <source>test</source>
+        <translation>测试</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="127"/>
+        <location filename="workmainwindow.cpp" line="353"/>
+        <location filename="workmainwindow.cpp" line="440"/>
+        <source>Waiting...</source>
+        <translation>等待信号...</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="155"/>
+        <source>&amp;capture</source>
+        <translation>&amp;采集</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="157"/>
+        <source>&amp;Light Test</source>
+        <translation>&amp;光强测试</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="159"/>
+        <source>&amp;Defect Test</source>
+        <translation>&amp;缺陷测试</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="161"/>
+        <source>&amp;Auto Test</source>
+        <translation>&amp;自动测试</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="163"/>
+        <source>&amp;Report Preview</source>
+        <translation>&amp;报告预览</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="165"/>
+        <source>&amp;Quit</source>
+        <translation>&amp;退出系统</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="203"/>
+        <source>product name</source>
+        <translation>Fiber Detector 光线端面检测系统 v1.0</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="216"/>
+        <source>camera load and init successfully!</source>
+        <translation>相机初始化成功！</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="220"/>
+        <source>warining:camera loadded and not recognized usb 3.0!</source>
+        <translation>找到相机，但相机未能被系统识别为USB3.0设备，可能无法正常工作！</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="224"/>
+        <source>error:camera not find!</source>
+        <translation>没有找到相机设备，初始化失败！</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="232"/>
+        <location filename="workmainwindow.cpp" line="285"/>
+        <location filename="workmainwindow.cpp" line="293"/>
+        <source>Warning</source>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="232"/>
+        <location filename="workmainwindow.cpp" line="285"/>
+        <source>please choose harness type first.</source>
+        <translation>请先选择线束类型。</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="293"/>
+        <source>please capture first.</source>
+        <translation>测试前请采集图像.</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="323"/>
+        <source>Analyze finished</source>
+        <translation>测试完毕</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="330"/>
+        <source>new reportview.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="343"/>
+        <source>result table load finished.</source>
+        <translation>测试结果表格加载完毕。</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="345"/>
+        <source>status view load finished.</source>
+        <translation>截面状态示意图加载完毕。</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="357"/>
+        <source>Success!</source>
+        <translation>成功！</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="362"/>
+        <source>Failed!</source>
+        <translation>失败！</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="363"/>
+        <source>Test Failed.</source>
+        <translation>测试未通过.</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="367"/>
+        <source>No result file generated.</source>
+        <translation>没有找到结果文件.</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="375"/>
+        <source>You have choosen the %1</source>
+        <translation>你选择了 %1</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="400"/>
+        <source>Male</source>
+        <translation>公头</translation>
+    </message>
+    <message>
+        <location filename="workmainwindow.cpp" line="400"/>
+        <source>Female</source>
+        <translation>母头</translation>
+    </message>
+</context>
+<context>
     <name>WorkMdi</name>
     <message>
-        <location filename="workmdi.cpp" line="8"/>
+        <location filename="workmdi.cpp" line="9"/>
         <source>MainWindow</source>
         <translation>测试窗口</translation>
     </message>
@@ -635,13 +955,13 @@
         <translation type="vanished">光强</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="80"/>
-        <location filename="workmdi.cpp" line="84"/>
+        <location filename="workmdi.cpp" line="102"/>
+        <location filename="workmdi.cpp" line="106"/>
         <source>pls capture</source>
         <translation>请点击拍摄按钮</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="122"/>
+        <location filename="workmdi.cpp" line="145"/>
         <source>&amp;capture</source>
         <translation>&amp;采集</translation>
     </message>
@@ -678,123 +998,197 @@
         <translation type="vanished">&amp;请选择</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="34"/>
+        <location filename="workmdi.cpp" line="37"/>
         <source>Please Choose</source>
         <translation>请选择</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="52"/>
+        <location filename="workmdi.cpp" line="55"/>
         <source>parameter</source>
         <translation>参数</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="53"/>
+        <location filename="workmdi.cpp" line="56"/>
         <source>value</source>
         <translation>值</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="56"/>
+        <location filename="workmdi.cpp" line="59"/>
         <source>Model</source>
         <translation>型号</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="57"/>
+        <location filename="workmdi.cpp" line="60"/>
         <source>TotalHoleCount</source>
         <translation>插孔个数</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="58"/>
+        <location filename="workmdi.cpp" line="61"/>
         <source>LocationHoleCount</source>
         <translation>定位孔个数</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="59"/>
+        <location filename="workmdi.cpp" line="62"/>
         <source>Creator</source>
         <translation>创建者</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="60"/>
+        <location filename="workmdi.cpp" line="63"/>
         <source>CreateDate</source>
         <translation>创建日期</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="61"/>
+        <location filename="workmdi.cpp" line="64"/>
         <source>IsGongTou</source>
         <translation>端子方向</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="91"/>
+        <location filename="workmdi.cpp" line="65"/>
+        <source>DivideHoleRadius</source>
+        <translation>分割插孔尺寸</translation>
+    </message>
+    <message>
+        <location filename="workmdi.cpp" line="66"/>
+        <source>CirqueOutRadius</source>
+        <translation>插孔圆环外径</translation>
+    </message>
+    <message>
+        <location filename="workmdi.cpp" line="67"/>
+        <source>CirqueInRadius</source>
+        <translation>插孔圆环内径</translation>
+    </message>
+    <message>
+        <location filename="workmdi.cpp" line="68"/>
+        <source>GongHoughMinRadius</source>
+        <translation>检测公头圆心霍夫变换函数最小半径</translation>
+    </message>
+    <message>
+        <location filename="workmdi.cpp" line="69"/>
+        <source>GongHoughMaxRadius</source>
+        <translation>检测公头圆心霍夫变换函数最大半径</translation>
+    </message>
+    <message>
+        <location filename="workmdi.cpp" line="70"/>
+        <source>MuHoughMinRadius</source>
+        <translation>检测插孔圆心霍夫变换函数的最小半径</translation>
+    </message>
+    <message>
+        <location filename="workmdi.cpp" line="71"/>
+        <source>MuHoughMaxRadius</source>
+        <translation>检测插孔圆心霍夫变换函数的最大半径</translation>
+    </message>
+    <message>
+        <location filename="workmdi.cpp" line="79"/>
+        <source>&amp;autoselect</source>
+        <translation>&amp;自动检测</translation>
+    </message>
+    <message>
+        <location filename="workmdi.cpp" line="114"/>
         <source>Starting test...</source>
         <translation>开始测试...</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="100"/>
+        <location filename="workmdi.cpp" line="123"/>
         <source>template</source>
         <translation>模板</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="101"/>
+        <location filename="workmdi.cpp" line="124"/>
         <source>test</source>
         <translation>测试</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="108"/>
-        <location filename="workmdi.cpp" line="211"/>
+        <location filename="workmdi.cpp" line="131"/>
+        <location filename="workmdi.cpp" line="331"/>
+        <location filename="workmdi.cpp" line="418"/>
         <source>Waiting...</source>
         <translation>等待信号...</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="124"/>
+        <location filename="workmdi.cpp" line="147"/>
         <source>&amp;Light Test</source>
         <translation>&amp;光强测试</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="126"/>
+        <location filename="workmdi.cpp" line="149"/>
         <source>&amp;Defect Test</source>
         <translation>&amp;完整度测试</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="128"/>
+        <location filename="workmdi.cpp" line="151"/>
         <source>&amp;Auto Test</source>
         <translation>&amp;自动测试</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="130"/>
+        <location filename="workmdi.cpp" line="153"/>
         <source>&amp;Report Preview</source>
         <translation>&amp;报告预览</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="171"/>
+        <location filename="workmdi.cpp" line="188"/>
+        <source>product name</source>
+        <translation>Fiber Detector 光线端面检测系统 v1.0</translation>
+    </message>
+    <message>
+        <location filename="workmdi.cpp" line="201"/>
+        <source>camera load and init successfully!</source>
+        <translation>相机初始化成功！</translation>
+    </message>
+    <message>
+        <location filename="workmdi.cpp" line="205"/>
+        <source>warining:camera loadded and not recognized usb 3.0!</source>
+        <translation>找到相机，但相机未能被系统识别为USB3.0设备，可能无法正常工作！</translation>
+    </message>
+    <message>
+        <location filename="workmdi.cpp" line="209"/>
+        <source>error:camera not find!</source>
+        <translation>没有找到相机设备，初始化失败！</translation>
+    </message>
+    <message>
+        <location filename="workmdi.cpp" line="217"/>
+        <location filename="workmdi.cpp" line="270"/>
+        <location filename="workmdi.cpp" line="278"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="171"/>
+        <location filename="workmdi.cpp" line="217"/>
+        <location filename="workmdi.cpp" line="270"/>
         <source>please choose harness type first.</source>
         <translation>请先选择线束类型。</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="190"/>
+        <location filename="workmdi.cpp" line="278"/>
+        <source>please capture first.</source>
+        <translation>测试前请采集图像.</translation>
+    </message>
+    <message>
+        <location filename="workmdi.cpp" line="308"/>
         <source>Analyze finished</source>
         <translation>测试完毕</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="215"/>
+        <location filename="workmdi.cpp" line="335"/>
         <source>Success!</source>
         <translation>成功！</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="220"/>
+        <location filename="workmdi.cpp" line="340"/>
         <source>Failed!</source>
         <translation>失败！</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="255"/>
+        <location filename="workmdi.cpp" line="341"/>
+        <source>Test Failed.</source>
+        <translation>测试未通过.</translation>
+    </message>
+    <message>
+        <location filename="workmdi.cpp" line="378"/>
         <source>Male</source>
         <translation>公头</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="255"/>
+        <location filename="workmdi.cpp" line="378"/>
         <source>Female</source>
         <translation>母头</translation>
     </message>
@@ -807,12 +1201,12 @@
         <translation type="vanished">操作完成</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="203"/>
+        <location filename="workmdi.cpp" line="321"/>
         <source>result table load finished.</source>
         <translation>测试结果表格加载完毕。</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="205"/>
+        <location filename="workmdi.cpp" line="323"/>
         <source>status view load finished.</source>
         <translation>截面状态示意图加载完毕。</translation>
     </message>
@@ -822,7 +1216,7 @@
         <translation type="vanished">无法打开结果文件:\n%1</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="55"/>
+        <location filename="workmdi.cpp" line="58"/>
         <source>Title</source>
         <translation>标题</translation>
     </message>
@@ -831,12 +1225,12 @@
         <translation type="vanished">描述</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="224"/>
+        <location filename="workmdi.cpp" line="345"/>
         <source>No result file generated.</source>
         <translation>没有找到结果文件.</translation>
     </message>
     <message>
-        <location filename="workmdi.cpp" line="232"/>
+        <location filename="workmdi.cpp" line="353"/>
         <source>You have choosen the %1</source>
         <translation>你选择了 %1</translation>
     </message>

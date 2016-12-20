@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui xml
+QT       += core gui xml axcontainer
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,7 +26,10 @@ SOURCES += main.cpp\
     sysuser.cpp \
     usermanagedialog.cpp \
     templatemodel.cpp \
-    Camera_c.cpp
+    Camera_c.cpp \
+    workmainwindow.cpp \
+    reportview.cpp \
+    selfcheck.cpp
 
 HEADERS  += mainwindow.h \
     workmdi.h \
@@ -41,10 +44,14 @@ HEADERS  += mainwindow.h \
     sysuser.h \
     usermanagedialog.h \
     templatemodel.h \
-    Camera_h.h
+    Camera_h.h \
+    workmainwindow.h \
+    reportview.h \
+    selfcheck.h
 
 FORMS    += mainwindow.ui
 
 RESOURCES += \
     fiber2.qrc
 TRANSLATIONS += fiber2.ts
+

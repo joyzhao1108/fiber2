@@ -7,45 +7,56 @@ InitDialog::InitDialog(QWidget *parent) :
 {
     setWindowTitle(tr("product name"));
     setWindowIcon(QIcon(":/icons/logo.ico"));
-    resize(600,200);
+    //resize(600,200);
     //setGeometry(100,100,200,200);
-    setStyleSheet("background-color: #efefef;");
+    //setStyleSheet("background-color: #efefef;");
     //setStyleSheet("QPushButton { background-color: red }");
     QFrame *topFrame = new QFrame(this);
-    QGridLayout * gridLayout = new QGridLayout(topFrame);
+    QHBoxLayout * hxboLayout = new QHBoxLayout(topFrame);
     logoLabel = new QLabel(tr("logo"));
     QPixmap *p = new QPixmap(":/icons/logo");
-    logoLabel->setPixmap(p->scaled(QSize(50,50), Qt::KeepAspectRatio));
+    logoLabel->setPixmap(p->scaled(QSize(25,25), Qt::KeepAspectRatio));
     companyLabel = new QLabel(tr("company name"));
     QFont font  = QApplication::font();
-    font.setBold(true);
-    font.setPointSize(14);
+    //font.setBold(true);
+    //font.setPointSize(16);
     companyLabel->setFont(font);
-    productLabel = new QLabel(tr("product name"));
-    gridLayout->addWidget(logoLabel, 0,0,2,1,Qt::AlignCenter);
-    gridLayout->addWidget(companyLabel, 0,1,Qt::AlignCenter);
-    gridLayout->addWidget(productLabel, 1,1,Qt::AlignCenter);
-    gridLayout->setColumnStretch(0,1);
-    gridLayout->setColumnStretch(1,4);
+    hxboLayout->addWidget(logoLabel);
+    hxboLayout->addWidget(companyLabel);
+    hxboLayout->addStretch(0);
+    //gridLayout->addWidget(productLabel, 1,1,Qt::AlignCenter);
+    //gridLayout->setColumnStretch(0,1);
+    //gridLayout->setColumnStretch(1,4);
 
     QFrame *bottomFrame = new QFrame(this);
-    QHBoxLayout * hxboLayout = new QHBoxLayout(bottomFrame);
+    QVBoxLayout * vxboLayout = new QVBoxLayout(bottomFrame);
+
+    productLabel = new QLabel(tr("product name"));
+    productLabel->setObjectName("productNameLabelStartUp");
     adminPushButton= new QPushButton(tr("Admin Setting"));
     userPushButton= new QPushButton(tr("Start Test"));
     exitPushButton= new QPushButton(tr("Quit"));
     connect(adminPushButton,&QPushButton::clicked, this, &InitDialog::opensetting);
     connect(userPushButton,&QPushButton::clicked, this, &InitDialog::starttest);
     connect(exitPushButton,&QPushButton::clicked, this, &QDialog::reject);
-    hxboLayout->addWidget(adminPushButton);
-    hxboLayout->addWidget(userPushButton);
-    hxboLayout->addWidget(exitPushButton);
-    //hxboLayout->setContentsMargins(100, 10, 100, 10);
-    hxboLayout->setSpacing(40);
+    vxboLayout->addWidget(productLabel,0,Qt::AlignCenter);
+    vxboLayout->addSpacing(100);
+    vxboLayout->addWidget(adminPushButton);
+    vxboLayout->addSpacing(20);
+    //adminPushButton->setFixedWidth(250);
+    vxboLayout->addWidget(userPushButton);
+    vxboLayout->addSpacing(20);
+    //userPushButton->setFixedWidth(250);
+    vxboLayout->addWidget(exitPushButton);
+    //exitPushButton->setFixedWidth(250);
+    vxboLayout->setContentsMargins(180, 150, 180, 200);
+
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addWidget(topFrame);
     mainLayout->addWidget(bottomFrame);
-    mainLayout->setContentsMargins(60, 5, 60, 5);
+    mainLayout->addStretch(0);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
     setLayout(mainLayout);
 
 }
@@ -56,7 +67,8 @@ void InitDialog::opensetting()
 {
     hide();
     LoginDialog dlg(true);
-    dlg.setWindowFlags(Qt::WindowTitleHint);
+    dlg.setWindowFlags(Qt::FramelessWindowHint);
+    dlg.setWindowState(Qt::WindowFullScreen);
     if(dlg.exec() == QDialog::Accepted)
     {
         qDebug()<<"Login Admin success!";
@@ -65,14 +77,15 @@ void InitDialog::opensetting()
     }
     else
     {
-        show();
+        done(99);
     }
 }
 void InitDialog::starttest()
 {
     hide();
     LoginDialog dlg(false);
-    dlg.setWindowFlags(Qt::WindowTitleHint);
+    dlg.setWindowFlags(Qt::FramelessWindowHint);
+    dlg.setWindowState(Qt::WindowFullScreen);
     if(dlg.exec() == QDialog::Accepted)
     {
         qDebug()<<"Login Tester success!";
@@ -81,12 +94,12 @@ void InitDialog::starttest()
     }
     else
     {
-        show();
+        done(99);
     }
 
 }
 
-
+/*
 void InitDialog::paintEvent(QPaintEvent *)
 {
     paint=new QPainter;
@@ -142,3 +155,4 @@ void InitDialog::mouseReleaseEvent(QMouseEvent *event)
         event->accept();
     }
 }
+*/

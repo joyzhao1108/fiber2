@@ -3,10 +3,9 @@
 #include <QDir>
 #include <QDebug>
 #include <QSettings>
-DectectFunction YXENVIRONMENT::detectFun = NULL;
-QString YXENVIRONMENT::detectpath_gong = NULL;
-QString YXENVIRONMENT::detectpath_mu = NULL;
-QString YXENVIRONMENT::lightpath = NULL;
+DectectFunction YXENVIRONMENT::detectFunM = NULL;
+DectectFunction YXENVIRONMENT::detectFunF = NULL;
+QString YXENVIRONMENT::detectpath = NULL;
 SysUser YXENVIRONMENT::currentuser = NULL;
 YXENVIRONMENT::YXENVIRONMENT()
 {
@@ -20,38 +19,54 @@ void YXENVIRONMENT::load()
     QTextCodec *codec = QTextCodec::codecForName("utf-8");
     QSettings *settings = new QSettings("fiber.ini", QSettings::IniFormat);
     settings->setIniCodec(codec);
-    settings->beginWriteArray("Templates");
     QString templatePath = QString("%1/template/%2/").arg(QDir::currentPath()).arg(1);
 
     QDir::current().mkpath(QString("%1/template/%2/").arg(QDir::currentPath()).arg(1));
+    if(!settings->childGroups().contains("Templates"))
+    {
+        settings->beginWriteArray("Templates");
 
-    settings->setArrayIndex(0);
-    settings->setValue("ID", QDateTime::currentDateTime().toString("TyyyyMMddhhmmss"));
-    settings->setValue("Title", QString("线束- %1 - 公头").arg(1));
-    settings->setValue("Model", "F12-R45");
-    settings->setValue("TotalHoleCount", 34);
-    settings->setValue("LocationHoleCount", 2);
-    settings->setValue("Creator", "admin");
-    settings->setValue("CreateDate", QDateTime::currentDateTime());
-    settings->setValue("IsGongTou", true);
-    settings->setValue("ConfigDataPath", templatePath + "gpldata01.txt");
-    settings->setValue("BasePicPath", templatePath + "male.png");
-    QPixmap(":/images/male-test.png").save(templatePath + "male.png");
+        settings->setArrayIndex(0);
+        settings->setValue("ID", QDateTime::currentDateTime().toString("TyyyyMMddhhmmss"));
+        settings->setValue("Title", QString("线束- %1 - 公头").arg(1));
+        settings->setValue("Model", "F12-R45");
+        settings->setValue("TotalHoleCount", 34);
+        settings->setValue("LocationHoleCount", 2);
+        settings->setValue("Creator", "admin");
+        settings->setValue("CreateDate", QDateTime::currentDateTime());
+        settings->setValue("IsGongTou", true);
+        settings->setValue("ConfigDataPath", templatePath + "gpldata01.txt");
+        settings->setValue("BasePicPath", templatePath + "male.png");
+        settings->setValue("DivideHoleRadius", 79);
+        settings->setValue("CirqueOutRadius", 32);
+        settings->setValue("CirqueInRadius", 23);
+        settings->setValue("GongHoughMinRadius", 510);
+        settings->setValue("GongHoughMaxRadius", 530);
+        settings->setValue("MuHoughMinRadius", 10);
+        settings->setValue("MuHoughMaxRadius", 50);
+        QPixmap(":/images/male-test.png").save(templatePath + "male.png");
 
-    settings->setArrayIndex(1);
-    settings->setValue("ID", QDateTime::currentDateTime().toString("TyyyyMMddhhmmss"));
-    settings->setValue("Title", QString("线束- %1 - 母头").arg(1));
-    settings->setValue("Model", "F12-R45");
-    settings->setValue("TotalHoleCount", 34);
-    settings->setValue("LocationHoleCount", 2);
-    settings->setValue("Creator", "admin");
-    settings->setValue("CreateDate", QDateTime::currentDateTime());
-    settings->setValue("IsGongTou", false);
-    settings->setValue("ConfigDataPath", templatePath + "gpldata01.txt");
-    settings->setValue("BasePicPath", templatePath + "female.bmp");
-    QPixmap(":/images/female-test.bmp").save(templatePath + "female.bmp");
-    settings->endArray();
-
+        settings->setArrayIndex(1);
+        settings->setValue("ID", QDateTime::currentDateTime().toString("TyyyyMMddhhmmss"));
+        settings->setValue("Title", QString("线束- %1 - 母头").arg(1));
+        settings->setValue("Model", "F12-R45");
+        settings->setValue("TotalHoleCount", 34);
+        settings->setValue("LocationHoleCount", 2);
+        settings->setValue("Creator", "admin");
+        settings->setValue("CreateDate", QDateTime::currentDateTime());
+        settings->setValue("IsGongTou", false);
+        settings->setValue("ConfigDataPath", templatePath + "gpldata02.txt");
+        settings->setValue("BasePicPath", templatePath + "female.bmp");
+        settings->setValue("DivideHoleRadius", 79);
+        settings->setValue("CirqueOutRadius", 32);
+        settings->setValue("CirqueInRadius", 23);
+        settings->setValue("GongHoughMinRadius", 510);
+        settings->setValue("GongHoughMaxRadius", 530);
+        settings->setValue("MuHoughMinRadius", 10);
+        settings->setValue("MuHoughMaxRadius", 50);
+        QPixmap(":/images/female-test.bmp").save(templatePath + "female.bmp");
+        settings->endArray();
+    }
     if(!settings->childGroups().contains("SysConfigs"))
     {
         settings->beginGroup("SysConfigs");
@@ -61,61 +76,79 @@ void YXENVIRONMENT::load()
     }
     delete settings;
 
+
     QFile::copy(":/configs/gpldata01.txt", templatePath + "gpldata01.txt");
     QFile foo(templatePath + "gpldata01.txt");
     foo.setPermissions(QFile::WriteUser);
+
+    QFile::copy(":/configs/gpldata02.txt", templatePath + "gpldata02.txt");
+    QFile foo2(templatePath + "gpldata02.txt");
+    foo2.setPermissions(QFile::WriteUser);
 }
 
 void YXENVIRONMENT::loadlibs()
 {
-    QString apiPath = QDir::currentPath() + "/tmpApi.dll";
-    if(QFile::exists(apiPath))
+    QString apiPathM = QDir::currentPath() + "/tmpApiM.dll";
+    if(QFile::exists(apiPathM))
     {
-        QFile::remove(apiPath);
+        QFile::remove(apiPathM);
     }
-    QFile dllFile(":/libs/Both_Detect_DefectOrlight.dll");
-    dllFile.copy(apiPath);
-    QLibrary detectLibrary(apiPath);
-    if(detectLibrary.load())
+    QFile dllFileM(":/libs/gongtou_Detect_DefectOrlight.dll");
+    dllFileM.copy(apiPathM);
+    dllFileM.close();
+    QLibrary detectLibraryM(apiPathM);
+    if(detectLibraryM.load())
     {
         //?mutou_Detect_Defect@@YA_NPEAD0@Z
-        YXENVIRONMENT::detectFun = (DectectFunction)detectLibrary.resolve("?Both_Detect_DefectOrlight@@YA_NPEAD000@Z");
-        if ( detectFun )
+        YXENVIRONMENT::detectFunM = (DectectFunction)detectLibraryM.resolve("gongtou_Detect_DefectOrlight");
+        if ( detectFunM )
         {
-            qDebug() << "QLibrary resolve A!";
+            qDebug() << "QLibrary resolve M!";
         }
         else
         {
-            qDebug()<<detectLibrary.errorString()<<endl;
+            qDebug()<<detectLibraryM.errorString()<<endl;
         }
     }
     else {
-        qDebug() << "QLibrary load error A!";
-        qDebug()<<detectLibrary.errorString()<<endl;
+        qDebug() << "QLibrary load error M!";
+        qDebug()<<detectLibraryM.errorString()<<endl;
+    }
+    QString apiPathF = QDir::currentPath() + "/tmpApiF.dll";
+    if(QFile::exists(apiPathF))
+    {
+        QFile::remove(apiPathF);
+    }
+    QFile dllFileF(":/libs/mutou_Detect_DefectOrlight.dll");
+    dllFileF.copy(apiPathF);
+    dllFileF.close();
+    QLibrary detectLibraryF(apiPathF);
+    if(detectLibraryF.load())
+    {
+        //?mutou_Detect_Defect@@YA_NPEAD0@Z
+        YXENVIRONMENT::detectFunF = (DectectFunction)detectLibraryF.resolve("mutou_Detect_DefectOrlight");
+        if ( detectFunF )
+        {
+            qDebug() << "QLibrary resolve F!";
+        }
+        else
+        {
+            qDebug()<<detectLibraryF.errorString()<<endl;
+        }
+    }
+    else {
+        qDebug() << "QLibrary load error F!";
+        qDebug()<<detectLibraryF.errorString()<<endl;
     }
 }
 
 void YXENVIRONMENT::loadvariables()
 {
-    YXENVIRONMENT::detectpath_gong = QDir::currentPath() + "/DetectDefect_gongtou.xml";
-    YXENVIRONMENT::detectpath_mu = QDir::currentPath() + "/DetectDefect_mutou.xml";
-    YXENVIRONMENT::lightpath = QDir::currentPath() + "/lightRank_gongtou.xml";
+    YXENVIRONMENT::detectpath = QDir::currentPath() + "/DetectResult.xml";
 
-    qDebug()<<QDir::currentPath()<<endl;
-
-
-    if(QFile::exists(detectpath_gong))
+    if(QFile::exists(detectpath))
     {
-        QFile::remove(detectpath_gong);
-    }
-
-    if(QFile::exists(detectpath_mu))
-    {
-        QFile::remove(detectpath_mu);
-    }
-    if(QFile::exists(lightpath))
-    {
-        QFile::remove(lightpath);
+        QFile::remove(detectpath);
     }
 }
 

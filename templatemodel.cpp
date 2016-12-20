@@ -85,7 +85,10 @@ void TemplateModel::setupModelData()
                << tr("LocationHoleCount")
                << tr("Creator")
                << tr("Create Date");
+   // QSettings *settings = new QSettings("fiber.ini", QSettings::IniFormat);
+    QTextCodec *codec = QTextCodec::codecForName("utf-8");
     QSettings *settings = new QSettings("fiber.ini", QSettings::IniFormat);
+    settings->setIniCodec(codec);
     int size = settings->beginReadArray("Templates");
     QVector<QVariant> columnData;
     for (int i = 0; i < size; ++i) {

@@ -1,6 +1,6 @@
 #include "Camera_h.h"
 #include <windows.h>
-//#include "cyapi.h" //USB3.0函数库头文件
+//#include "cyapi.h" //USB3.0鍑芥暟搴撳ご鏂囦欢
 
 int CameraInit ( unsigned int* SerialNumber )
 {

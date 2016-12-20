@@ -5,7 +5,7 @@ AdminSettingDialog::AdminSettingDialog(QWidget *parent) :
 {
     setWindowTitle(tr("Admin Settings Dialog"));
     setWindowIcon(QIcon(":/icons/logo.ico"));
-    setFixedSize(800,600);
+
 
 //    QHBoxLayout *mainLayout = new QHBoxLayout(this);
 //    mainLayout->setMargin(5);
@@ -16,7 +16,7 @@ AdminSettingDialog::AdminSettingDialog(QWidget *parent) :
     contentsWidget->setMovement(QListView::Static);
     contentsWidget->setMaximumWidth(128);
     contentsWidget->setSpacing(12);
-    contentsWidget->setFixedHeight(500);
+    //contentsWidget->setFixedHeight(500);
     pagesWidget = new QStackedWidget;
     pagesWidget->addWidget(new ConfigurationPage);
     pagesWidget->addWidget(new AdminPwdChangePage);
@@ -42,7 +42,7 @@ AdminSettingDialog::AdminSettingDialog(QWidget *parent) :
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addLayout(horizontalLayout);
-    mainLayout->addStretch(1);
+    //mainLayout->addStretch(1);
     mainLayout->addSpacing(12);
     mainLayout->addLayout(buttonsLayout);
     setLayout(mainLayout);

@@ -15,8 +15,16 @@
         <file>icons/greenlight.ico</file>
         <file>icons/redlight.ico</file>
         <file>skins/default.qss</file>
-        <file>skins/example1.qss</file>
-        <file>skins/example2.qss</file>
+        <file>libs/gongtou_Detect_DefectOrlight.dll</file>
+        <file>libs/mutou_Detect_DefectOrlight.dll</file>
+        <file>icons/right-32.png</file>
+        <file>icons/zoomin.png</file>
+        <file>icons/blueStone.png</file>
+        <file>icons/greenStone.png</file>
+        <file>icons/redStone.png</file>
+        <file>icons/yellowStone.png</file>
+        <file>icons/exit.png</file>
+        <file>icons/bottom.png</file>
     </qresource>
     <qresource prefix="/lang">
         <file>fiber2.qm</file>

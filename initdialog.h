@@ -16,17 +16,17 @@ private:
     QLabel *logoLabel;
     QLabel *companyLabel;
     QLabel *productLabel;
-
+/*
     void mouseMoveEvent(QMouseEvent*event);
     void mousePressEvent(QMouseEvent*event);
     void mouseReleaseEvent(QMouseEvent*event);
     QPoint dragPosition;
-
+*/
     void starttest();
     void opensetting();
 
-    void paintEvent(QPaintEvent*);
-    QPainter *paint;
+//    void paintEvent(QPaintEvent*);
+//    QPainter *paint;
 };
 
 #endif // INITDIALOG_H

@@ -39,7 +39,7 @@ public:
     void addHarnessConfig(const HarnessConfig &config);
 
 
-    bool loadfromfile(const QString &filename);
+    bool loadfromfile(const QString &filename, bool isGongtou);
 
     // Basic functionality:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -47,18 +47,17 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     int gongtouconfig[9];
-    int mutouconfig[9];
-    QList<HarnessConfig> configs(int flag) const;
-    int maxradius(int flag) const;
-    int inradius(int flag) const;
-    void seterror(int flag, int order, bool error = true);
+    QList<HarnessConfig> configs() const;
+    int maxradius() const;
+    int inradius() const;
+    void seterror(int order, bool error = true);
     QString getconfigdatafilepath() const;
 protected:
     QHash<int, QByteArray> roleNames() const;
 private:
     QList<HarnessConfig> m_configs;
     int m_gongtouradius;
-    int m_mutouradius;
+    bool m_isGongtou;
     QString m_configFiePath;
 };
 

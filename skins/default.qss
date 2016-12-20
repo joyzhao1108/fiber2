@@ -3,40 +3,69 @@ QStackedWidget, QLabel, QPushButton, QRadioButton, QCheckBox,
 QGroupBox, QStatusBar, QToolButton, QComboBox, QDialog {
     background-color: #ffffff;
     color: darkblue;
-    font-family: "Segoe UI";
+    font-family: "微软雅黑,Segoe UI";
+    font-size: 14px;
 }
 
 /* === QWidget === */
 QWidget:window {
     background: #ffffff;
     color: darkblue;
-    font-family: "Segoe UI";
+    font-family: "微软雅黑,Segoe UI";
+    font-size: 14px;
 }
 /* === customization === */
 QFrame{
     background: white;
 }
+/* === QComboBox === */
+QComboBox {
+    border-radius:0px;
+    background-color: #fff;
+    border: 1px solid #d2d6de;
+    min-width: 65px;
+    min-height: 36px;
+    font-size: 16px;
+}
 /* === QPushButton === */
 QPushButton {
-    border: 1px solid #333333;
+    border-radius:3px;
+    background-color: #3c8dbc;
+    border: 1px solid transparent;
+    border-color:#367fa9;
+    color:#ffffff;
     padding: 4px;
     min-width: 65px;
-    min-height: 12px;
+    min-height: 36px;
+    font-size: 16px;
 }
 
 QPushButton:hover {
-    background-color: #dddddd;
-    border-color: #444444;
+    background-color: #367fa9;
 }
 
 QPushButton:pressed {
-    background-color: #888888;
-    border-color: #333333;
-    color: brown;
+    background-color: #286090;
 }
 
 QPushButton:disabled {
     color: #333333;
+}
+QLineEdit {
+    border-radius:0px;
+    background-color: #fff;
+    border: 1px solid #d2d6de;
+    color:#555;
+    min-width: 100px;
+    min-height: 36px;
+    font-size: 16px;
+}
+QLineEdit:hover {
+   border: 1px solid #66afe9;
+}
+
+QLineEdit:focus {
+    border: 1px solid #3c8dbc;
 }
 QLabel#titleLabel[status="0"]{
      background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
@@ -65,4 +94,30 @@ QLabel#titleLabel[status="-1"]{
      border-style: solid;
      border-color: rgb(255, 170, 0);
      color:white;
+}
+QLabel#productNameLabel{
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0.3 rgb(183, 227, 241) ,stop: 0.63  rgb(126, 194, 234), stop: 0.85 rgb(146, 213, 230)  );
+     border-style: outset;
+     border-width: 1px;
+     border-style: solid;
+     border-color: rgb(0, 0, 0);
+     font-size: 20px;
+     color:black;
+}
+QLabel#productNameLabelStartUp{
+     font-weight: bold;
+     font-size: 52px;
+     font-family: "方正姚体";
+     color:black;
+}
+QLabel#LoginTitleLabelStartUp{
+     font-weight: bold;
+     font-size: 36px;
+     font-family: "方正姚体";
+     color:black;
+}
+QTextEdit#selfCheckTextEdit{
+    background:#000;
+    color:green;
 }

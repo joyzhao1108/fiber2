@@ -9,8 +9,9 @@ class ResultView : public QLabel
     Q_OBJECT
 
 public:
-    explicit ResultView(int flag, HarnessConfigModel *model, QWidget *parent = 0);
+    explicit ResultView(HarnessConfigModel *model, QWidget *parent = 0);
     void setresult(const DefectResultModel *resultmodel);
+    void reload();
 
 private:
     void paintEvent(QPaintEvent*);
